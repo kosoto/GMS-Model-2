@@ -17,7 +17,7 @@
 	<input type="text" name="pass"/><br>
 	새로운 비밀번호 <br>
 	<input type="text" name="newPass"/><br>
-	<input type="hidden" name="action" value="move"/>
+	<input type="hidden" name="action" value="update"/>
 	<input type="hidden" name="page" value="update_result"/>
 	<input type="submit" value="제출" />
 	</form>

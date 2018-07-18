@@ -3,7 +3,7 @@
 <%@ page import = "domain.*" %>
 <%@ page import="java.util.*" %>
 <%
-	String ctx = request.getContextPath();
+	String ctx = application.getContextPath();
 %>
 <!doctype html>
 <html lang="en">
@@ -15,7 +15,7 @@
 	</style>
 </head>
 <body>
-	
+	<a href="<%=ctx%>/member.do?action=list">회원목록</a>
 </body>
 </html>
 

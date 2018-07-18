@@ -17,7 +17,7 @@
 			<input type="text" name="user-id" ><br>
 			Pass <br>
 			<input type="text" name="pass"  ><br>
-			<input type="hidden" name="action" value="move"/>
+			<input type="hidden" name="action" value="login"/>
 			<input type="hidden" name="page" value="user_login_result"/>
 			<input type="submit" value="제출">
 		</form><br>

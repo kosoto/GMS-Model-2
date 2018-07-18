@@ -9,5 +9,6 @@
 	</style>
 </head>
 <body>
+<h3>아이디 검색 결과</h3>
 </body>
 </html>

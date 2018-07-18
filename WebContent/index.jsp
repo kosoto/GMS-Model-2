@@ -21,7 +21,7 @@
 		</tr>
 		<tr class="height-400">
 			<td>
-			<img src="img/home/images.jpg" alt=""
+			<img src="resources/img/home/images.jpg" alt=""
 			class="image-size"/>
 			</td>
 			<td>
@@ -32,6 +32,8 @@
 				<li><a href="<%=ctx %>/member.do?action=move&page=member_list">회원목록</a></li>
 				<li><a href="<%=ctx %>/member.do?action=move&page=search_team_form">팀이름검색</a></li>
 				<li><a href="<%=ctx %>/member.do?action=move&page=search_member_form">아이디검색</a></li>
+				<li><a href="<%=ctx %>/member.do?action=move&page=update_form">비밀번호 바꾸기</a></li>
+				<li><a href="<%=ctx %>/member.do?action=move&page=delete_form">계정삭제</a></li>
 			</ul>			
 			</td>
 		</tr>

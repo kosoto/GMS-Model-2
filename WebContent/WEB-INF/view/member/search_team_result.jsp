@@ -9,5 +9,6 @@
 	</style>
 </head>
 <body>
+<h3>팀 검색 결과</h3>
 </body>
 </html>
