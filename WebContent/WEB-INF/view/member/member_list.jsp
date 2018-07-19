@@ -15,7 +15,7 @@
 	</style>
 </head>
 <body>
-	<a href="<%=ctx%>/member.do?action=list">회원목록</a>
+	<a href="<%=ctx%>/member.do?action=search">회원목록</a>
 </body>
 </html>
 

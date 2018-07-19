@@ -1,7 +1,9 @@
 package command;
 
+import javax.servlet.http.HttpServletRequest;
 public class Command implements Order{
 	protected String action,domain,page,view;
+	protected HttpServletRequest request;
 
 	@Override
 	public void execute() {
@@ -39,4 +41,13 @@ public class Command implements Order{
 	public void setView(String view) {
 		this.view = view;
 	}
+
+	public HttpServletRequest getRequest() {
+		return request;
+	}
+
+	public void setRequest(HttpServletRequest request) {
+		this.request = request;
+	}
+	
 }

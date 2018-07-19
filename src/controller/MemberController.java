@@ -9,10 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import command.Carrier;
-import command.Creator;
-import command.Sentry;
-import domain.MemberBean;
+import command.*;
+import domain.*;
 import enums.Action;
 import service.MemberServiceImpl;
 
@@ -25,97 +23,41 @@ public class MemberController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String page = request.getParameter("page");
-		MemberBean member = null;
-		List<MemberBean> list = null;
-		
-		System.out.println("멤버 컨트롤러 진입");
 		Sentry.init(request);
-		System.out.println("액션: "+Sentry.cmd.getAction());
 		switch(Action.valueOf(Sentry.cmd.getAction().toUpperCase())) {
 		case MOVE : 
-			System.out.println("무브 안으로 진입");
-			try {
-				Carrier.send(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			Carrier.forward(request, response);
 			break;
 		case CREATE :
-			System.out.println("createMember안으로 진입");
-			/*try {
-				Creator.create(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}*/
-			member = new MemberBean();
-			member.setMemberId(request.getParameter("user-id"));
-			member.setPass(request.getParameter("pass"));
-			member.setName(request.getParameter("name"));
-			member.setSsn(request.getParameter("ssn"));
-			//MemberServiceImpl.getInstance().createMember(member);
-			response.sendRedirect(request.getContextPath()
-					+"/member.do?action=move&page=user_login_form"
-					);
-			break;
-		case LIST :
-			list = new ArrayList<>();
-			list = MemberServiceImpl.getInstance().memberList();
-			System.out.println(list.size());
+			Carrier.redirect(request, response,
+					"/member.do?action=move&page=user_login_form");
 			break;
 		case SEARCH :
-			list = new ArrayList<>();
-			list = MemberServiceImpl.getInstance().findByTeamId(request.getParameter("team_id"));
-			System.out.println(list.size());
-			response.sendRedirect(request.getContextPath()
-					+"/member.do?action=move&page=search_team_result");
+			Carrier.redirect(request, response,
+					"/member.do?action=move&page=search_team_result");
 			break;
 		case RETRIEVE :
-			String name = MemberServiceImpl.getInstance().findById(request.getParameter("user_id")).getName();
-			System.out.println(name);
-			response.sendRedirect(request.getContextPath()
-					+"/member.do?action=move&page=search_member_result");
+			Carrier.redirect(request, response, 
+					"/member.do?action=move&page=search_member_result");
 			break;
 		case COUNT :
-			MemberServiceImpl.getInstance().countMember();
+			Carrier.redirect(request, response, "");
 			break;
 		case UPDATE :
-			member = new MemberBean();
-			member.setMemberId(request.getParameter("user-id"));
-			member.setPass(
-					request.getParameter("pass")+"/"+
-					request.getParameter("newPass")
-					);
-			//MemberServiceImpl.getInstance().updateMember(member);
-			response.sendRedirect(request.getContextPath()
-					+"/member.do?action=move&page=my_page");
-
+			System.out.println("업데이트 컨트롤러 진입");
+			Carrier.redirect(request, response, 
+					"/member.do?action=move&page=my_page");
 			break;
 		case DELETE :
-			member = new MemberBean();
-			member.setMemberId(request.getParameter("user-id"));
-			member.setPass(request.getParameter("pass"));
-			//MemberServiceImpl.getInstance().deleteMember(member);
-			response.sendRedirect(request.getContextPath());
+			System.out.println("삭제 컨트롤러 진입");
+			Carrier.redirect(request, response,"");
 			break;
 		case LOGIN :
-			member = new MemberBean();
-			member.setMemberId(request.getParameter("user-id"));
-			member.setPass(request.getParameter("pass"));
-			if(MemberServiceImpl.getInstance().login(member)) {
-				System.out.println("로그인 성공");
-				response.sendRedirect(request.getContextPath()
-						+"/member.do?action=move&page=my_page"
-						); 
-			}else {
-				System.out.println("로그인 실패");
-				response.sendRedirect(request.getContextPath()
-						+"/member.do?action=move&page=user_login_form"
-						);  
-			}
+			System.out.println("로그인 컨트롤러 진입");
+			Carrier.redirect(request, response, 
+					"/member.do?action=move&page=my_page");
 			break;
-		default:
-			break;
+		default:break;
 		}
 	}
 

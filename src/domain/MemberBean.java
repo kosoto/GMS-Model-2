@@ -59,6 +59,12 @@ public class MemberBean {
 		this.age = age;
 	}
 
+	@Override
+	public String toString() {
+		return "MemberBean [memberId=" + memberId + ", TeamId=" + TeamId + ", name=" + name + ", ssn=" + ssn + ", roll="
+				+ roll + ", pass=" + pass + ", age=" + age + "]";
+	}
+
 	
 	
 	
