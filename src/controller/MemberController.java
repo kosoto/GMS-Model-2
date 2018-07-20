@@ -52,8 +52,6 @@ public class MemberController extends HttpServlet {
 		case LOGIN :
 			System.out.println("로그인 컨트롤러 진입");
 			if(request.getAttribute("match").equals("TRUE")) {
-				System.out.println("user"+request.getAttribute("user"));
-				System.out.println("Sentry user"+Sentry.cmd.getRequest().getAttribute("user"));
 				Carrier.forward(request, response);
 			}else {
 				Carrier.redirect(request, response, 
