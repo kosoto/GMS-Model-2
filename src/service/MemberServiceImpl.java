@@ -6,8 +6,6 @@ import repository.MemberDAOImpl;
 
 public class MemberServiceImpl implements MemberService{
 	private static MemberService instance = new MemberServiceImpl();
-	private MemberBean session;
-	private MemberServiceImpl() {session = new MemberBean();}
 	public static MemberService getInstance() {return instance;}
 
 	
@@ -45,8 +43,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 	@Override
 	public boolean login(MemberBean member) {
-		session =MemberDAOImpl.getInstance().login(member); 
-		return (session!=null);
+		return ((MemberDAOImpl.getInstance().login(member))!=null);
 	}
 	@Override
 	public String createMember(MemberBean member) {

@@ -10,8 +10,7 @@ public class CountCommand extends Command {
 	public int getCount() {
 		return count;
 	}
-	public CountCommand(HttpServletRequest request,
-			HttpServletResponse response) {
+	public CountCommand(HttpServletRequest request) {
 		setRequest(request);
 		setAction(request.getParameter("action"));
 		setDomain(request.getServletPath().substring(1, 

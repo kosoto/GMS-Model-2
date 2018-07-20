@@ -8,11 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import command.*;
-import domain.*;
 import enums.Action;
-import service.MemberServiceImpl;
 
 @WebServlet("/member.do")
 public class MemberController extends HttpServlet {
@@ -54,8 +51,14 @@ public class MemberController extends HttpServlet {
 			break;
 		case LOGIN :
 			System.out.println("로그인 컨트롤러 진입");
-			Carrier.redirect(request, response, 
-					"/member.do?action=move&page=my_page");
+			if(request.getAttribute("match").equals("TRUE")) {
+				System.out.println("user"+request.getAttribute("user"));
+				System.out.println("Sentry user"+Sentry.cmd.getRequest().getAttribute("user"));
+				Carrier.forward(request, response);
+			}else {
+				Carrier.redirect(request, response, 
+						"/member.do?action=move&page=user_login_form");
+			}
 			break;
 		default:break;
 		}

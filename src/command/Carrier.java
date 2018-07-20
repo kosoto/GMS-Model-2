@@ -1,7 +1,5 @@
 package command;
-import java.io.IOException;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
 public class Carrier {

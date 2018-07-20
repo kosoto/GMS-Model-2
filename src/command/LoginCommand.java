@@ -20,21 +20,22 @@ public class LoginCommand extends Command {
 	
 	@Override
 	public void execute() {
-		switch(Domain.valueOf(Sentry.cmd.domain.toUpperCase())) {
-		case MEMBER :
-			System.out.println("로그인 진입");
-			MemberBean member = new MemberBean();
-			member.setMemberId(request.getParameter("user-id"));
-			member.setPass(request.getParameter("pass"));
-			if(MemberServiceImpl.getInstance().login(member)) {
-				System.out.println("로그인 성공");
-			}else {
-				System.out.println("로그인 실패");
-			}
-			break;
-		default:
-			break;
-		}
 		super.execute();
+		System.out.println("로그인 진입");
+		MemberBean member = new MemberBean();
+		member.setMemberId(request.getParameter("user-id"));
+		member.setPass(request.getParameter("pass"));
+		if(MemberServiceImpl.getInstance().login(member)) {
+			request.setAttribute("match", "TRUE");
+			request.setAttribute("user", 
+					MemberServiceImpl.getInstance()
+					.findById(
+							request.getParameter("user-id")));
+			
+		}else {
+			request.setAttribute("match", "FALSE");
+		}
+		
+		
 	}
 }
