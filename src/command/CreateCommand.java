@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import domain.MemberBean;
 import enums.Domain;
-import service.MemberServiceImpl;
 
 public class CreateCommand extends Command{
 	public CreateCommand(HttpServletRequest request) {

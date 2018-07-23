@@ -1,13 +1,8 @@
 package service;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import domain.ExamBean;
-import domain.RecodeBean;
-import domain.SubjectBean;
-import repository.ExamDAOImpl;
-import repository.RecodeDAOImpl;
+import java.util.*;
+import domain.*;
+import repository.*;
 
 public class ExamServiceImpl implements ExamService{
 	private static ExamService instance = new ExamServiceImpl();
@@ -18,8 +13,8 @@ public class ExamServiceImpl implements ExamService{
 	public void createExam(ExamBean exam) {
 		String[] arrScore = exam.getScore().split(",");	
 		RecodeServiceImpl.getInstance().createRecode(exam);
-		String[] arr = {"자바","SQL","HTML5","R","PYTHON"};
-		List<SubjectBean> list = null;
+	//	String[] arr = {"자바","SQL","HTML5","R","PYTHON"};
+	//	List<SubjectBean> list = null;
 		String recodeSeq = String.valueOf(
 				(RecodeDAOImpl.getInstance().countRecode())
 				);

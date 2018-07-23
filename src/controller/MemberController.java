@@ -2,12 +2,9 @@ package controller;
 
 
 import java.io.IOException;
-import java.util.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import command.*;
 import enums.Action;
 
@@ -19,7 +16,7 @@ public class MemberController extends HttpServlet {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Sentry.init(request);
 		switch(Action.valueOf(Sentry.cmd.getAction().toUpperCase())) {
 		case MOVE : 
@@ -60,10 +57,6 @@ public class MemberController extends HttpServlet {
 			break;
 		default:break;
 		}
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
 	}
 
 }

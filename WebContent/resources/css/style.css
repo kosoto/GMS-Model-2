@@ -1,4 +1,117 @@
-table,th,td {
+body{
+	font-family: 'Malgun Gothic', 'Verdana';
+	background-color: #00ff00;
+	color : #ffff80;
+	margin : 0; /* 바깥쪽 간격 */
+	padding : 0; /* 안쪽 간격 */
+}
+h1,h2,h3,h4,h5,h6{
+	font-size : 1.5em; /* em은 상대적인 크기 지정 */
+}
+h1{
+	font-size : 2em; 
+	padding-bottom: 0; /* 아래쪽과의 간격 */
+	magin-bottom: 0;
+}
+div#wrapper{
+	width: 90%;
+	padding-bottom: 0;
+	magin-bottom: 0;
+	margin-left: auto;
+	margin-right: auto;
+}
+div#header{
+	position: relative;
+	margin-bottom: 0;
+	padding: 0;
+	color: #000;
+}
+div#title{
+	float: left;
+	text-align: left;
+	display: block;
+}
+div#Login-box{
+	float: right;
+	margin: 10px;
+	font-size: 1.1em;
+	display: block;
+	color: #fff;
+}
+div#Login-box a:hover{ /* 마우스가 지나가면 효과주기 */
+	color: #fff;
+	text-decoration: none;
+	
+}
+div#Login-box a:active{ /* 실행되면 효과주기 */
+	color: #fff000;
+	text-decoration: none;
+}
+div#menu-box{
+	clear: both;
+	margin-top: 40px;
+}
+div#admin-box{
+	clear: both;
+	margin-top: 40px;
+}
+div#header h1 {
+	color: #fff;
+	padding: 5px 0;
+	margin: 0;
+	border: none;
+	line-height: 2em;
+	font-weight: bold; /* 글자 굵기 */	
+	font-size: 32px; /* 고정수치 */
+}
+div#content{
+	padding: 15px 30px 15px 30px; /* 12시 3시 6시 9시 방향 */
+	background-color: #fff;
+	margin-bottom: 30px;
+	min-height: 400px; /* 화면에 따른 최소 높이 */
+}
+div#content-box{
+	clear: both; /* 좌표 초기화 */
+	margin-top: 40px;
+}
+ul#menu{
+	text-align: right;
+	margin: 0;
+	border-bottom: 1px #ff0080;
+	position: relative;	
+}
+ul#menu li{
+	display: inline; /* 줄바꿈 하지 말것 */
+	list-style: none;
+	background-color: #ff8000;
+}
+ul#menu li a{
+	padding: 10px 20px;
+	background-color: #8080ff;
+	font-weight: bold;
+	text-decoration: none; /* 밑줄표시안하게 */
+	line-height: 2.8em; /* 작은화면이 기준 */ 
+	color: black;
+}
+ul#menu li a:hover{
+	background-color: #800000;
+	text-decoration: none; 
+}
+ul#menu li a:active{
+	background-color: #ff00ff;
+	text-decoration: none; 
+}
+div#footer{
+	clear: both;
+	color: #fff;
+	text-align: center;
+	margin: 0;
+	padding: 10px 0;
+	line-height: normal;
+	font-size: 1.5em;
+}
+
+/* table,th,td {
 	border: 1px solid black;
 	width:80%;
 	border-collapse: collapse;
@@ -12,4 +125,4 @@ table,th,td {
 	.margin-200-auto{margin: 200px auto}
 	.image-size{width:100%; height:393px}
 	.text-align{text-align: center}
-	.width-50{width:50px}
+	.width-50{width:50px} */

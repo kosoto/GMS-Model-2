@@ -1,9 +1,7 @@
 package command;
 
 import javax.servlet.http.HttpServletRequest;
-
 import domain.MemberBean;
-import enums.Domain;
 import service.MemberServiceImpl;
 
 public class LoginCommand extends Command {

@@ -10,6 +10,7 @@ public class SearchCommand extends Command{
 		setRequest(request);
 		setDomain(request.getServletPath().substring(1, 
 				request.getServletPath().indexOf(".")));
+		System.out.println("도메인 :"+getDomain());
 		setAction(request.getParameter("action"));
 		setPage(request.getParameter("page"));
 		execute();

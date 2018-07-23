@@ -12,6 +12,6 @@
 	<title>회원가입결과</title>
 </head>
 <body>
-	<button><a href="<%=ctx %>/member.do?action=move&page=user_login_form">로그인하기</a></button>
+	<a href="<%=ctx %>/member.do?action=move&page=user_login_form">로그인하기</a>
 </body>
 </html>

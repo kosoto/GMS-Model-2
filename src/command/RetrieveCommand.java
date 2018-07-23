@@ -1,8 +1,6 @@
 package command;
 
 import javax.servlet.http.HttpServletRequest;
-
-import domain.MemberBean;
 import service.MemberServiceImpl;
 
 public class RetrieveCommand extends Command{
