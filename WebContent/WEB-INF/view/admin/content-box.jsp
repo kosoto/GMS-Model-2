@@ -3,4 +3,4 @@
 	<div id="content-box">
 		<h1>ADMIN MANGEMENT</h1>
 	</div>
-</div> <!-- content end -->
+</div>

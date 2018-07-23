@@ -3,11 +3,7 @@
 <c:set var="context" value="<%=application.getContextPath() %>" />
 <!doctype html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<title>ADMIN</title>
-	<link rel="stylesheet" href="${context}/resources/css/style.css" />
-</head>
+<jsp:include page="head.jsp"/>
 <body>	
 <div id="wrapper">
 	<div id="header">
