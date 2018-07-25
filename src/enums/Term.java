@@ -1,11 +1,14 @@
 package enums;
 
 public enum Term {
-	WEBPATH, MAIN, RESOURCES;
+	WEBPATH, MAIN, RESOURCES,CONTEXT;
 	@Override
 	public String toString() {
 		String res = "";
 		switch(this) {
+		case CONTEXT : 
+			res = "context";
+			break;
 		case WEBPATH: 
 			res = "/WEB-INF/view/";
 			break;

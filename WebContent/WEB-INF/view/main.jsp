@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <!doctype html>
 <html lang="en">
 	<jsp:include page="common/head.jsp"/>
@@ -14,7 +13,7 @@
 	<div id="footer">주소</div>
 </div>
 <jsp:include page="common/gateFunction.jsp"/>
-<jsp:include page="common/moveFunction.jsp"/>
+<%-- <jsp:include page="common/moveFunction.jsp"/> --%>
 <!-- body안에다가, 전역메소드 처리 -->
 </body>
 </html>
