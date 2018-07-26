@@ -13,7 +13,6 @@
 	<div id="footer">주소</div>
 </div>
 <jsp:include page="common/gateFunction.jsp"/>
-<%-- <jsp:include page="common/moveFunction.jsp"/> --%>
 <!-- body안에다가, 전역메소드 처리 -->
 </body>
 </html>

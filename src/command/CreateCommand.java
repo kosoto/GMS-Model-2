@@ -22,7 +22,7 @@ public class CreateCommand extends Command{
 		case MEMBER : 
 			System.out.println("회원 가입 진입");
 			MemberBean member = new MemberBean();
-			member.setMemberId(request.getParameter("user-id"));
+			member.setMemberId(request.getParameter("userid"));
 			member.setPass(request.getParameter("pass"));
 			member.setName(request.getParameter("name"));
 			member.setSsn(request.getParameter("ssn"));
