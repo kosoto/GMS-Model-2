@@ -5,7 +5,7 @@
 <body>
 	<div>
 		<h2>회원가입</h2>
-		<form id="joinForm" onsubmit="return gate()">
+		<form id="joinForm">
 		ID<br>
 		<input type="text" name="userid"/><br>
 		비밀번호<br>
@@ -19,7 +19,6 @@
 		<input id="joinBth" type="button" value="제출"/>
 		</form>
 	</div>
-	<jsp:include page="../common/gateFunction.jsp"/>
 	<script>
 	document.getElementById('joinBth')
 	.addEventListener('click',function(){

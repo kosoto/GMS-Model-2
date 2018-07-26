@@ -2,6 +2,6 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>GMS</title>
-	<link rel="stylesheet" href="${context}/resources/css/style.css" />
+	<link rel="stylesheet" href="${css}/style.css" />
 	<script src="${js}/app.js"></script>
 </head>

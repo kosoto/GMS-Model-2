@@ -5,7 +5,7 @@
 <body>
 	<div>
 		<h2>사용자 로그인</h2>	
-		<form id="login_form" onsubmit="return gate()">
+		<form id="login_form">
 			ID <br>
 			<input type="text" name="userid" ><br>
 			Pass <br>
@@ -15,7 +15,6 @@
 			<input id="login_btn" type="button" value="제출">
 		</form><br>
 	</div>
-	<jsp:include page="../common/gateFunction.jsp"/>
 	<script>
 	document.getElementById('login_btn')
 	.addEventListener('click',function(){
