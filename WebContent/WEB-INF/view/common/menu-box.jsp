@@ -3,6 +3,14 @@
 	<ul id="menu">
 		<li><a href="">HOME</a></li>
 		<li><a href="">ABOUT</a></li>
-		<li><a onclick="common.move('admin','move','main')">ADMIN</a></li>
+		<li><a id="moveAdmin">ADMIN</a></li>
 	</ul>
 </div>
+<script>
+document.getElementById('moveAdmin')
+.addEventListener('click',
+		function(){  //콜백 함수, 뒤따라 연이어 호출되는 함수
+			new Common().move(['${context}','admin','move','main'])
+		}
+);
+</script>

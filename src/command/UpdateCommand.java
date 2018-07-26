@@ -18,7 +18,7 @@ public class UpdateCommand extends Command {
 	public void execute() {
 		System.out.println("업데이트 커맨드 진입");
 		MemberBean member = new MemberBean();
-		member.setMemberId(request.getParameter("user-id"));
+		member.setMemberId(request.getParameter("userid"));
 		member.setPass(
 				request.getParameter("pass")+"/"+
 				request.getParameter("newPass")

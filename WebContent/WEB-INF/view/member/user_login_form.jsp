@@ -12,19 +12,16 @@
 			<input type="text" name="pass"  ><br>
 			<input type="hidden" name="action" value="login"/>
 			<input type="hidden" name="page" value="my_page"/>
-			<input id="login_btn" type="button" value="제출">
+			<input id="login_btn" type="button" value="제출"/>
 		</form><br>
 	</div>
 	<script>
 	document.getElementById('login_btn')
 	.addEventListener('click',function(){
-		var member = new Member();
 		var form = document.getElementById('login_form');
 		form.action = "${context}/member.do";
 		form.method = "post"; //get은 입력값을 노출, post는 노출x form태그만 post방식이 있음
-		member.setMemberId(form.userid.value);
-		member.setPass(form.userid.value);
-		if(member.loginValidation()){
+		if(service.loginvalidation([form.userid.value,form.pass.value])){
 			form.submit();
 		}else{
 			alert("유효하지 않음");

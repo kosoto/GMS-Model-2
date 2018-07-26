@@ -25,10 +25,7 @@
 		var form = document.getElementById('joinForm');
 		form.action = "${context}/member.do";
 		form.method = "post"; //get은 입력값을 노출, post는 노출x form태그만 post방식이 있음
-		member.setMemberId(form.userid.value);
-		member.setPass(form.pass.value);
-		member.setSsn(form.ssn.value);
-		if(member.joinValidation()){
+		if(member.joinValidation([form.userid.value,form.pass.value,form.ssn.value])){
 			form.submit();
 		}else{
 			alert("유효하지 않음");
