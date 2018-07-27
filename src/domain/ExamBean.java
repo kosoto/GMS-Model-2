@@ -2,7 +2,7 @@ package domain;
 
 import lombok.Data;
 
-@Data
+@Data 
 public class ExamBean {
 	private String examSeq,subSeq,recodeSeq,month,score,memId;
 

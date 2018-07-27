@@ -17,6 +17,8 @@ public class MemberController extends HttpServlet {
     }
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//request.setCharacterEncoding("UTF-8");		
+		System.out.println("멤버컨트롤러 진입직후 이름 : "+request.getParameter("name"));
 		Sentry.init(request);
 		switch(Action.valueOf(Sentry.cmd.getAction().toUpperCase())) {
 		case MOVE : 

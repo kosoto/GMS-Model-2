@@ -174,6 +174,7 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 	@Override
 	public String insertMember(MemberBean member) {
+		System.out.println("DAO 진입직후:"+member);
 		String result = "";
 		if(!existID(member.getMemberId())) {
 			try {
@@ -185,10 +186,7 @@ public class MemberDAOImpl implements MemberDAO{
 						.createStatement()
 						.executeUpdate(
 								String.format(
-								"INSERT INTO MEMBER "
-										+ "(MEM_ID, NAME, SSN, PASSWORD, AGE) "
-										+ "VALUES "
-										+ "('%s','%s','%s','%s','%d')", 
+								MemberQuery.INSERT_MEMBER.toString(), 
 										member.getMemberId(),
 										member.getName(),
 										member.getSsn(),
