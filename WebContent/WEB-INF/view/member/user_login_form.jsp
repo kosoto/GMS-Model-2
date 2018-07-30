@@ -11,7 +11,7 @@
 			Pass <br>
 			<input type="text" name="pass"  ><br>
 			<input type="hidden" name="action" value="login"/>
-			<input type="hidden" name="page" value="my_page"/>
+			<input type="hidden" name="page" value="my_page"/> 
 			<input id="login_btn" type="button" value="제출"/>
 		</form><br>
 	</div>

@@ -1,9 +1,6 @@
 package command;
 
-import java.io.UnsupportedEncodingException;
-
 import javax.servlet.http.HttpServletRequest;
-
 import domain.MemberBean;
 import enums.Domain;
 import service.MemberServiceImpl;
@@ -34,9 +31,7 @@ public class CreateCommand extends Command{
 			member.setRoll(request.getParameter("roll"));
 			member.setTeamId(request.getParameter("teamid"));
 			member.setSubject(ParamMap.getValues(request, "subject"));
-			System.out.println("createCommond"+member);
 			MemberServiceImpl.getInstance().createMember(member);
-			System.out.println("회원가입 성공");
 			break;
 		default:
 			break;

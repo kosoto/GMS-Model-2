@@ -10,7 +10,13 @@
 document.getElementById('moveAdmin')
 .addEventListener('click',
 		function(){  //콜백 함수, 뒤따라 연이어 호출되는 함수
-			new Common().move(['${context}','admin','move','main'])
+			router.move(
+					{
+						context : '${context}',
+						domain : 'admin',
+						action : 'move',
+						page : 'main'}
+					)
 		}
 );
 </script>

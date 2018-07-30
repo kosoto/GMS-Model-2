@@ -24,13 +24,13 @@
 		<input type="radio" name="teamid" 
 			value="none" checked="checked"/>없음
 		<input type="radio" name="teamid" 
-			value="nolja" />걍놀자
+			value="ateam" />걍놀자
 		<input type="radio" name="teamid" 
-			value="jieunHouse" />지은이네
+			value="hteam" />지은이네
 		<input type="radio" name="teamid" 
-			value="turtleGing" />왕거북이
+			value="steam" />왕거북이
 		<input type="radio" name="teamid" 
-			value="coddingZzang" />코딩짱
+			value="cteam" />코딩짱
 		<br>	
 	프로젝트역활
 		<select name="roll" id="roll">

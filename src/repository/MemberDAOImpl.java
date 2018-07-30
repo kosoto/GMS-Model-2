@@ -28,6 +28,7 @@ public class MemberDAOImpl implements MemberDAO{
 			while(rs.next()) {
 				member = new MemberBean();
 				member.setMemberId(rs.getString("MEM_ID"));
+				member.setPass(rs.getString("PASSWORD"));
 				member.setTeamId(rs.getString("TEAM_ID"));
 				member.setName(rs.getString("NAME"));
 				member.setAge(rs.getString("AGE"));
@@ -61,6 +62,7 @@ public class MemberDAOImpl implements MemberDAO{
 			while(rs.next()) {
 				member = new MemberBean();
 				member.setMemberId(rs.getString("MEM_ID"));
+				member.setPass(rs.getString("PASSWORD"));
 				member.setTeamId(rs.getString("TEAM_ID"));
 				member.setName(rs.getString("NAME"));
 				member.setAge(rs.getString("AGE"));
@@ -90,6 +92,7 @@ public class MemberDAOImpl implements MemberDAO{
 			while(rs.next()) {
 				member = new MemberBean();
 				member.setMemberId(rs.getString("MEM_ID"));
+				member.setPass(rs.getString("PASSWORD"));
 				member.setTeamId(rs.getString("TEAM_ID"));
 				member.setName(rs.getString("NAME"));
 				member.setAge(rs.getString("AGE"));
@@ -161,6 +164,7 @@ public class MemberDAOImpl implements MemberDAO{
 			while(rs.next()) {
 				mem = new MemberBean();
 				mem.setMemberId(rs.getString("MEMID"));
+				mem.setPass(rs.getString("PASSWORD"));
 				mem.setTeamId(rs.getString("TEAMID"));
 				mem.setName(rs.getString("NAME"));
 				mem.setSsn(rs.getString("SSN"));
@@ -178,6 +182,17 @@ public class MemberDAOImpl implements MemberDAO{
 		String result = "";
 		if(!existID(member.getMemberId())) {
 			try {
+				System.out.println("DAO insert 쿼리 : "+String.format(
+								MemberQuery.INSERT_MEMBER.toString(), 
+										member.getMemberId(),
+										member.getName(),
+										member.getSsn(),
+										member.getPass(),
+										member.getAge(),
+										member.getGender(),
+										member.getRoll(),
+										member.getTeamId().toUpperCase()
+										));
 				DataBaseFactory.createDataBase(
 						Vendor.ORACLE,
 						DBConstant.USER_NAME,
@@ -187,12 +202,16 @@ public class MemberDAOImpl implements MemberDAO{
 						.executeUpdate(
 								String.format(
 								MemberQuery.INSERT_MEMBER.toString(), 
-										member.getMemberId(),
+										member.getMemberId().toUpperCase(),
 										member.getName(),
 										member.getSsn(),
 										member.getPass(),
-										(119-Integer.parseInt(member.getSsn().substring(0, 2)))
+										member.getAge(),
+										member.getGender(),
+										member.getRoll(),
+										member.getTeamId().toUpperCase()
 										));
+					
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -243,6 +262,41 @@ public class MemberDAOImpl implements MemberDAO{
 			e.printStackTrace();
 		}
 		return count;
+	}
+	@Override
+	public void updateTeamid(MemberBean member) {
+		try {
+			DataBaseFactory.createDataBase(Vendor.ORACLE,
+					DBConstant.USER_NAME, DBConstant.PASSWORD)
+			.getConnection()
+			.createStatement()
+			.executeQuery(
+					String.format(MemberQuery.UPDATE_TEAMID.toString(),
+							member.getTeamId().toUpperCase(),
+							member.getMemberId())
+					);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	@Override
+	public void updateRoll(MemberBean member) {
+		try {
+			System.out.println("역활변경 쿼리"+String.format(MemberQuery.UPDATE_TEAMID.toString(),
+					member.getRoll(),
+					member.getMemberId()));
+			DataBaseFactory.createDataBase(Vendor.ORACLE, DBConstant.USER_NAME, DBConstant.PASSWORD)
+			.getConnection()
+			.createStatement()
+			.executeQuery(
+					String.format(MemberQuery.UPDATE_ROLL.toString(),
+							member.getRoll(),
+							member.getMemberId())
+					);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

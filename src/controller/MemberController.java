@@ -17,8 +17,6 @@ public class MemberController extends HttpServlet {
     }
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//request.setCharacterEncoding("UTF-8");		
-		System.out.println("멤버컨트롤러 진입직후 이름 : "+request.getParameter("name"));
 		Sentry.init(request);
 		switch(Action.valueOf(Sentry.cmd.getAction().toUpperCase())) {
 		case MOVE : 
@@ -51,6 +49,11 @@ public class MemberController extends HttpServlet {
 		case LOGIN :
 			System.out.println("로그인 컨트롤러 진입");
 			if(request.getAttribute("match").equals("TRUE")) {
+				request.getSession()
+				.setAttribute("user", 
+				request.getAttribute("user")); // MemberController extends HttpServlet이니까 이곳에서 세션에 넣음
+				/*Sentry.cmd.setPage("my_page");
+				Sentry.cmd.execute();*/
 				Carrier.forward(request, response);
 			}else {
 				Carrier.redirect(request, response, 

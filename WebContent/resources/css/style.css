@@ -111,7 +111,7 @@ div#footer{
 	font-size: 1.5em;
 }
 
-/* table,th,td {
+ table,th,td {
 	border: 1px solid black;
 	width:80%;
 	border-collapse: collapse;
@@ -125,4 +125,4 @@ div#footer{
 	.margin-200-auto{margin: 200px auto}
 	.image-size{width:100%; height:393px}
 	.text-align{text-align: center}
-	.width-50{width:50px} */
+	.width-50{width:50px} 

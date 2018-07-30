@@ -14,4 +14,6 @@ public interface MemberService {
 	public void deleteMember(MemberBean member);
 	public boolean login(MemberBean member);
 	public boolean existId(String id);
+	public void updateTeamid(MemberBean member);
+	public void updateRoll(MemberBean member);
 }

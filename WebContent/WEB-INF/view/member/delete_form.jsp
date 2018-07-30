@@ -2,25 +2,39 @@
 <% String ctx = application.getContextPath(); %>
 <!doctype html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<title>Document</title>
-	<link rel="stylesheet" href="resources/css/style.css" />
-</head>
+	<jsp:include page="../common/head.jsp"/>
 <body>
-	<div class="margin-200-auto text-align width-200 border">
-	<h3 class="text-align">회원탈퇴</h3>
-		<form action="${context}/member.do?">
+	<div>
+	<h3>회원탈퇴</h3>
+		<form id="deleteForm" name="deleteForm" action="${context}/member.do?">
 		ID <br>
-		<input type="text" name="user-id"/><br>
+		<input type="text" name="userid"/><br>
 		비밀번호 <br>
 		<input type="text" name="pass"/><br>
 		<input type="hidden" name="action" value="delete"/>
 		<input type="hidden" name="page" value=""/>
-		<input type="submit" value="제출" />
+		<input id="deleteBtn" type="button" value="제출" />
 		</form>
 	</div>
-	<jsp:include page="../common/gateFunction.jsp"/>
+	<script>
+	document.getElementById('deleteBtn')
+	.addEventListener('click',function(){
+		var x = (service.nullChecker(
+				{id:document.deleteForm.userid.value,
+				 pass:document.deleteForm.pass.value}
+				)
+		);
+		if(x.checker){
+			var form = document.getElementById('deleteForm');
+			form.action = "${context}/member.do";
+			form.method = "POST";
+			form.submit();
+		}else{
+			alert(x.text);
+		}
+		
+	});
+	</script>
 </body>
 </html>
 

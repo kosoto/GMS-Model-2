@@ -12,7 +12,7 @@ public class LoginCommand extends Command {
 				request.getServletPath().substring(1,
 						request.getServletPath().indexOf("."))
 				);
-		setPage(request.getParameter("page"));
+		setPage("my_page");
 		execute();
 	}
 	

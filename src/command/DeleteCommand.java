@@ -3,6 +3,7 @@ package command;
 import javax.servlet.http.HttpServletRequest;
 
 import domain.MemberBean;
+import service.MemberServiceImpl;
 
 public class DeleteCommand extends Command {
 	public DeleteCommand(HttpServletRequest request) {
@@ -16,10 +17,7 @@ public class DeleteCommand extends Command {
 	@Override
 	public void execute() {
 		System.out.println("멤버 삭제 진입");
-		MemberBean member = new MemberBean();
-		member.setMemberId(request.getParameter("user-id"));
-		member.setPass(request.getParameter("pass"));
-		//MemberServiceImpl.getInstance().deleteMember(member);
+		MemberServiceImpl.getInstance().deleteMember((MemberBean) request.getSession().getAttribute("user"));
 		System.out.println("멤버 삭제 성공");
 		super.execute();
 	}

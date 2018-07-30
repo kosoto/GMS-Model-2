@@ -9,13 +9,22 @@
 document.getElementById('move_user_login_form')
 	.addEventListener('click',
 			function(){  //콜백 함수, 뒤따라 연이어 호출되는 함수
-			router.move(['${context}','member','move','user_login_form'])
+			router.move(
+					{context : '${context}',
+						domain : 'member',
+						action : 'move',
+						page : 'user_login_form'}
+					)
 			}
 	);
 document.getElementById('move_join_form')
 	.addEventListener('click',
 			function(){  //콜백 함수, 뒤따라 연이어 호출되는 함수
-			router.move(['${context}','member','move','join_form'])
+			router.move(
+					{context :'${context}',
+						domain :'member',
+						action :'move',
+						page :'join_form'})
 			}
 	);
 </script>

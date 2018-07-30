@@ -1,10 +1,11 @@
+"use strict";
 var router = ( ()=>{
            return {move : x => {
                 location.href =
-                     x[0]+"/"
-                     +x[1]
-                     +".do?action="+x[2]
-                     +"&page="+x[3];
+                     x.context+"/"
+                     +x.domain
+                     +".do?action="+x.action
+                     +"&page="+x.page;
                 }};//closure, key(String) & value(object)의 map구조, scalar 문법
      })();  //이때는 ;이 빠지면 에러
 var service = (()=>{
@@ -14,7 +15,7 @@ var service = (()=>{
 					checker : true,
 					text : '필수 입력값이 없습니다.'
 			}; //closure 가 없는 객체, 가볍다.
-			for(key in x){ // for-each loop
+			for(var key in x){ // for-each loop
 				if(x[key] === ""){
 					json.checker = false;
 				}
