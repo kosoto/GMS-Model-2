@@ -14,15 +14,9 @@
 		<input type="text" name="name"/><br>
 		주민번호<br>
 		<input type="text" name="ssn" /><br>	
-		<input type="hidden" name="action" value="create"/>
-		<input type="hidden" name="page" value="user_login_form"/>
-		<input type="hidden" name="gender" />
-		<input type="hidden" name="age" />
 		<input id="joinBth" type="button" value="제출"/>
 		<br>
 	소속팀
-		<input type="radio" name="teamid" 
-			value="none" checked="checked"/>없음
 		<input type="radio" name="teamid" 
 			value="ateam" />걍놀자
 		<input type="radio" name="teamid" 
@@ -67,12 +61,25 @@
 			var form = document.getElementById('joinForm');
 			form.action = "${context}/member.do";
 			form.method = "POST"; //get은 입력값을 노출, post는 노출x form태그만 post방식이 있음
-			member.join({id:form.userid.value,
+			member.join({
+				 id:form.userid.value,
 				 pass:form.pass.value,
 				 name:form.name.value,
 				 ssn:form.ssn.value});
-			document.joinForm.gender.value = member.getGender();
-			document.joinForm.age.value = member.getAge();
+			var arr =[
+				{name:"action", value:"create"},
+				{name:"gender", value:member.getGender()},
+				{name:"age", value:member.getAge()}];
+			
+			
+			for(var i=0;i<arr.length;i++){
+				alert(Object.keys(arr[i])[0]);
+				var node = document.createElement('input');
+				node.setAttribute('type','hidden');
+				node.setAttribute('name',arr[i].name);
+				node.setAttribute('value',arr[i].value);
+				form.appendChild(node);
+			} 
 			form.submit();
 		}else{
 			alert(x.text);

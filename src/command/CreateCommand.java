@@ -8,11 +8,11 @@ import service.MemberServiceImpl;
 public class CreateCommand extends Command{
 	public CreateCommand(HttpServletRequest request) {
 		setRequest(request);
+		setAction(request.getParameter("action"));
 		setDomain(request.getServletPath()
 				.substring(1, 
 						request.getServletPath().indexOf(".")));
-		setAction(request.getParameter("action"));
-		setPage(request.getParameter("page"));
+		//setPage(request.getParameter("page"));
 		execute();
 	}
 	
@@ -20,7 +20,6 @@ public class CreateCommand extends Command{
 	public void execute() {
 		switch(Domain.valueOf(domain.toUpperCase())) {
 		case MEMBER : 
-			System.out.println("회원 가입 진입");
 			MemberBean member = new MemberBean();
 			member.setMemberId(request.getParameter("userid"));
 			member.setPass(request.getParameter("pass"));
@@ -31,11 +30,11 @@ public class CreateCommand extends Command{
 			member.setRoll(request.getParameter("roll"));
 			member.setTeamId(request.getParameter("teamid"));
 			member.setSubject(ParamMap.getValues(request, "subject"));
-			MemberServiceImpl.getInstance().createMember(member);
+			//MemberServiceImpl.getInstance().createMember(member);
 			break;
 		default:
 			break;
 		}
-		super.execute();
+		//super.execute();
 	}
 }

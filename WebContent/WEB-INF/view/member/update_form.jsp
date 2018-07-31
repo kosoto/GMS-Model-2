@@ -25,8 +25,6 @@
 			<td>${user.age}</td>
 			<td><a id="moveUpdateTeamForm">팀명</a></td>
 			<td>
-				<input type="radio" name="teamid" id="none"
-				value="none" checked="checked"/>없음
 				<input type="radio" name="teamid" id="ateam"
 					value="ateam" />걍놀자
 				<input type="radio" name="teamid" id="hteam"
@@ -43,18 +41,15 @@
 		<td><a id="moveUpdateRollForm">역활</a></td>
 		<td>
 			<select name="roll" id="roll">
-				<option value="none" >없음</option>
-				<option value="leader">팀장</option>
-				<option value="front">프론트개발</option>
-				<option value="back">백단개발</option>
-				<option value="android">안드로이드개발</option>
-				<option value="minfe">민폐</option>
+				<option id="leader" value="leader">팀장</option>
+				<option id="front" value="front">프론트개발</option>
+				<option id="back" value="back">백단개발</option>
+				<option id="android" value="android">안드로이드개발</option>
+				<option id="minfe" value="minfe">민폐</option>
 			</select>	
 		</td>
 		</tr>
 	</table>
-	<input type="hidden" name="action" value="update"/>
-	<input type="hidden" name="page" value="my_page"/>
 	<input id="updateBtn" type="button" value="수정" />
 	</form>
 </div>
@@ -73,13 +68,28 @@ for(var i=0;i<roll.options.length;i++){
 		roll.options[i].setAttribute("selected","selected");
 	}
 }
-//form.roll.setAttribute("selected","selected");
 
+var newPass = form.newPass.value;
 document.getElementById('updateBtn')
 .addEventListener('click',function(){
-	form.action = "${context}/member.do";
-	form.method = "post"; //get은 입력값을 노출, post는 노출x form태그만 post방식이 있음
-	form.submit();
+	if((newPass !== "" && newPass !== '${user.pass}') ||
+	   !document.getElementById('${user.teamId}'.toLowerCase()).checked ||
+	   roll.value !== '${user.roll}'){
+		if(newPass === ""){
+			form.newPass.value = '${user.pass}';
+		}
+		var node = document.createElement('input');
+		node.setAttribute('type','hidden');
+		node.setAttribute('name','action');
+		node.setAttribute('value','update');
+		form.appendChild(node);
+		form.action = "${context}/member.do";
+		form.method = "post"; //get은 입력값을 노출, post는 노출x form태그만 post방식이 있음
+		form.submit();
+	}else{
+		alert('수정사항이 없습니다.');
+	}
+	
 });
 </script>
 </body>

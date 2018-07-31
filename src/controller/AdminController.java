@@ -23,11 +23,9 @@ public class AdminController extends HttpServlet {
 		Sentry.init(request);
 		switch(Action.valueOf(Sentry.cmd.getAction().toUpperCase())) {
 		case MOVE : 
-			System.out.println("admin컨트롤러 무브케이스");
 			Carrier.forward(request, response);
 			break;
 		case SEARCH : 
-			System.out.println("admin컨트롤러 서치케이스");
 			Carrier.redirect(request, response, 
 					"/admin.do?action=move&page=memberList");
 			break;

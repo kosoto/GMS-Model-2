@@ -1,8 +1,7 @@
 package enums;
 public enum MemberQuery {
 	LOGIN,INSERT_MEMBER,EXIST_ID,COUNT_MEMBER,UPDATE_MEMBER,
-	DELETE_MEMBER,MEMBER_LIST, FIND_BY_TEAM_ID, FIND_BY_ID, 
-	UPDATE_TEAMID, UPDATE_ROLL;
+	DELETE_MEMBER,MEMBER_LIST, FIND_BY_TEAM_ID, FIND_BY_ID;
 	
 	@Override
 	public String toString() {	
@@ -35,10 +34,7 @@ public enum MemberQuery {
 		case COUNT_MEMBER : 
 			query = " SELECT COUNT(*) AS count FROM MEMBER";
 			break;
-		case UPDATE_MEMBER : 
-			query = "UPDATE MEMBER SET PASSWORD = '%s' "
-				  + " WHERE MEM_ID LIKE '%s'";
-			break;
+		
 		case DELETE_MEMBER : 
 			query = "DELETE FROM MEMBER "
 					+ "WHERE MEM_ID LIKE '%s' "
@@ -55,13 +51,12 @@ public enum MemberQuery {
 			query = "SELECT * FROM MEMBER "
 					+ "WHERE MEM_ID LIKE '%s'";
 			break;
-		case UPDATE_TEAMID : 
-			query = "UPDATE MEMBER SET TEAM_ID = '%s' "
-					  + " WHERE MEM_ID LIKE '%s'";
-			break;
-		case UPDATE_ROLL : 
-			query = "UPDATE MEMBER SET ROLL = '%s' "
-					  + " WHERE MEM_ID LIKE '%s'";
+		case UPDATE_MEMBER : 
+			query = "UPDATE MEMBER "
+				  + "SET PASSWORD = '%s', "
+				  + "TEAM_ID = '%s', "
+				  + "ROLL = '%s' "
+				  + " WHERE MEM_ID LIKE '%s'";
 			break;
 		}
 		return query;

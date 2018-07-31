@@ -14,6 +14,4 @@ public interface MemberDAO {
 	public void deleteMember(MemberBean member);
 	public MemberBean login(MemberBean member);
 	public boolean existID(String id);
-	public void updateTeamid(MemberBean member);
-	public void updateRoll(MemberBean member);
 }

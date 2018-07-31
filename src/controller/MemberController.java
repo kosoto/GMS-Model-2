@@ -38,22 +38,14 @@ public class MemberController extends HttpServlet {
 			Carrier.redirect(request, response, "");
 			break;
 		case UPDATE :
-			System.out.println("업데이트 컨트롤러 진입");
 			Carrier.redirect(request, response, 
 					"/member.do?action=move&page=my_page");
 			break;
 		case DELETE :
-			System.out.println("삭제 컨트롤러 진입");
 			Carrier.redirect(request, response,"");
 			break;
 		case LOGIN :
-			System.out.println("로그인 컨트롤러 진입");
 			if(request.getAttribute("match").equals("TRUE")) {
-				request.getSession()
-				.setAttribute("user", 
-				request.getAttribute("user")); // MemberController extends HttpServlet이니까 이곳에서 세션에 넣음
-				/*Sentry.cmd.setPage("my_page");
-				Sentry.cmd.execute();*/
 				Carrier.forward(request, response);
 			}else {
 				Carrier.redirect(request, response, 

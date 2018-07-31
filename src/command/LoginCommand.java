@@ -19,13 +19,12 @@ public class LoginCommand extends Command {
 	@Override
 	public void execute() {
 		super.execute();
-		System.out.println("로그인 진입");
 		MemberBean member = new MemberBean();
 		member.setMemberId(request.getParameter("userid"));
 		member.setPass(request.getParameter("pass"));
 		if(MemberServiceImpl.getInstance().login(member)) {
 			request.setAttribute("match", "TRUE");
-			request.setAttribute("user", 
+			request.getSession().setAttribute("user", //세션에 담기
 					MemberServiceImpl.getInstance()
 					.findById(
 							request.getParameter("userid")));

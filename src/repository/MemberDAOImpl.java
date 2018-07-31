@@ -116,6 +116,8 @@ public class MemberDAOImpl implements MemberDAO{
 					String.format(
 							MemberQuery.UPDATE_MEMBER.toString(), 
 							member.getPass(),
+							member.getTeamId().toUpperCase(),
+							member.getRoll(),
 							member.getMemberId())
 					);
 		} catch (Exception e) {
@@ -178,21 +180,9 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 	@Override
 	public String insertMember(MemberBean member) {
-		System.out.println("DAO 진입직후:"+member);
 		String result = "";
 		if(!existID(member.getMemberId())) {
 			try {
-				System.out.println("DAO insert 쿼리 : "+String.format(
-								MemberQuery.INSERT_MEMBER.toString(), 
-										member.getMemberId(),
-										member.getName(),
-										member.getSsn(),
-										member.getPass(),
-										member.getAge(),
-										member.getGender(),
-										member.getRoll(),
-										member.getTeamId().toUpperCase()
-										));
 				DataBaseFactory.createDataBase(
 						Vendor.ORACLE,
 						DBConstant.USER_NAME,
@@ -262,41 +252,6 @@ public class MemberDAOImpl implements MemberDAO{
 			e.printStackTrace();
 		}
 		return count;
-	}
-	@Override
-	public void updateTeamid(MemberBean member) {
-		try {
-			DataBaseFactory.createDataBase(Vendor.ORACLE,
-					DBConstant.USER_NAME, DBConstant.PASSWORD)
-			.getConnection()
-			.createStatement()
-			.executeQuery(
-					String.format(MemberQuery.UPDATE_TEAMID.toString(),
-							member.getTeamId().toUpperCase(),
-							member.getMemberId())
-					);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
-	@Override
-	public void updateRoll(MemberBean member) {
-		try {
-			System.out.println("역활변경 쿼리"+String.format(MemberQuery.UPDATE_TEAMID.toString(),
-					member.getRoll(),
-					member.getMemberId()));
-			DataBaseFactory.createDataBase(Vendor.ORACLE, DBConstant.USER_NAME, DBConstant.PASSWORD)
-			.getConnection()
-			.createStatement()
-			.executeQuery(
-					String.format(MemberQuery.UPDATE_ROLL.toString(),
-							member.getRoll(),
-							member.getMemberId())
-					);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 }

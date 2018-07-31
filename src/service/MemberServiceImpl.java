@@ -27,14 +27,7 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public void updateMember(MemberBean member) {
-		/*String pass = member.getPass().split("/")[0];
-		String newPass = member.getPass().split("/")[1];
-		if(!pass.equals(newPass)) {
-			member.setPass(newPass);
-			MemberDAOImpl.getInstance().updateMember(member);
-		}*/
 		MemberDAOImpl.getInstance().updateMember(member);
-		//이전 비번= 새로운 비번일때 메시지 처리
 	}
 
 	@Override
@@ -58,20 +51,6 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int countMember() {
 		return MemberDAOImpl.getInstance().countMember();
-	}
-
-
-
-	@Override
-	public void updateTeamid(MemberBean member) {
-		MemberDAOImpl.getInstance().updateTeamid(member);
-	}
-
-
-
-	@Override
-	public void updateRoll(MemberBean member) {
-		MemberDAOImpl.getInstance().updateRoll(member);
 	}
 
 }
