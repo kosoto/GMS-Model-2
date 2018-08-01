@@ -1,7 +1,7 @@
 body{
 	font-family: 'Malgun Gothic', 'Verdana';
-	background-color: #00ff00;
-	color : #ffff80;
+	background-color: #0080ff;
+	color : #00ff00;
 	margin : 0; /* 바깥쪽 간격 */
 	padding : 0; /* 안쪽 간격 */
 }
@@ -126,3 +126,4 @@ div#footer{
 	.image-size{width:100%; height:393px}
 	.text-align{text-align: center}
 	.width-50{width:50px} 
+	.bgColorisYellow{background-color: #ffff00}

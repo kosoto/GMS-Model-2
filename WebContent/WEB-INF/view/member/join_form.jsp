@@ -70,10 +70,7 @@
 				{name:"action", value:"create"},
 				{name:"gender", value:member.getGender()},
 				{name:"age", value:member.getAge()}];
-			
-			
 			for(var i=0;i<arr.length;i++){
-				alert(Object.keys(arr[i])[0]);
 				var node = document.createElement('input');
 				node.setAttribute('type','hidden');
 				node.setAttribute('name',arr[i].name);

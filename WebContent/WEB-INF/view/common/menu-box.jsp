@@ -9,14 +9,8 @@
 <script>
 document.getElementById('moveAdmin')
 .addEventListener('click',
-		function(){  //콜백 함수, 뒤따라 연이어 호출되는 함수
-			router.move(
-					{
-						context : '${context}',
-						domain : 'admin',
-						action : 'move',
-						page : 'main'}
-					)
+		function(){  
+			admin.check('${context}');
 		}
 );
 </script>

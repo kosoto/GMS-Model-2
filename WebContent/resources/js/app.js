@@ -8,6 +8,26 @@ var router = ( ()=>{
                      +"&page="+x.page;
                 }};//closure, key(String) & value(object)의 map구조, scalar 문법
      })();  //이때는 ;이 빠지면 에러
+var admin = (()=>{
+	return{
+		check : x=>{
+			var isAdmin = confirm('관리자입니까?'); //window의 method,BOM객체
+			if(isAdmin){
+				var password = prompt('관리자 비번을 입력바랍니다.');
+				if(password == 1){
+					router.move(
+							{
+								context : x,
+								domain : 'admin',
+								action : 'search',
+								page : 'main'}
+							)
+				}
+			}else{
+				alert('관리자만 접근이 허용됩니다.');
+			}
+		}
+	};})();
 var service = (()=>{
 	return {
 		nullChecker : x=>{

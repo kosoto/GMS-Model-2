@@ -5,7 +5,7 @@
 <body>	
 <div id="wrapper">
 	<div id="header">
-		<jsp:include page="../common/title-box.jsp"/>
+		<h1>관리자 페이지</h1>
 		<jsp:include page="menu-box.jsp"/>
 	</div> <!-- header end -->
 	<jsp:include page="content-box.jsp"/>

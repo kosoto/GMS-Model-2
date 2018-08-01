@@ -26,11 +26,10 @@ public class AdminController extends HttpServlet {
 			Carrier.forward(request, response);
 			break;
 		case SEARCH : 
-			Carrier.redirect(request, response, 
-					"/admin.do?action=move&page=memberList");
+			Carrier.forward(request, response);
 			break;
 		case RETRIEVE : 
-			Carrier.redirect(request, response, "url");
+			Carrier.forward(request, response);
 			break;
 		default:
 			break;
