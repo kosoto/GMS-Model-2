@@ -1,7 +1,8 @@
 package enums;
+
 public enum MemberQuery {
 	LOGIN,INSERT_MEMBER,EXIST_ID,COUNT_MEMBER,UPDATE_MEMBER,
-	DELETE_MEMBER,MEMBER_LIST, FIND_BY_TEAM_ID, FIND_BY_ID;
+	DELETE_MEMBER,MEMBER_LIST, FIND_BY_ID, FIND_SOME;
 	
 	@Override
 	public String toString() {	
@@ -43,13 +44,13 @@ public enum MemberQuery {
 		case MEMBER_LIST : 
 			query = "SELECT * FROM MEMBER";
 			break;
-		case FIND_BY_TEAM_ID : 
-			query = "SELECT * FROM MEMBER "
-					+ "WHERE TEAM_ID LIKE '%s'";
-			break;
 		case FIND_BY_ID : 
 			query = "SELECT * FROM MEMBER "
 					+ "WHERE MEM_ID LIKE '%s'";
+			break;
+		case FIND_SOME : 
+			query = "SELECT * FROM %s "
+					+ "WHERE %s LIKE '%s'";
 			break;
 		case UPDATE_MEMBER : 
 			query = "UPDATE MEMBER "

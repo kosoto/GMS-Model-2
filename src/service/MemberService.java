@@ -7,7 +7,7 @@ import domain.MemberBean;
 public interface MemberService {
 	public String createMember(MemberBean member);
 	public List<MemberBean> memberList();
-	public List<MemberBean> findByTeamId(String teamId);
+	public List<MemberBean> findSome(String word);
 	public MemberBean findById(String id);
 	public int countMember();
 	public void updateMember(MemberBean member);

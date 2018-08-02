@@ -13,7 +13,7 @@
 .addEventListener('click',function(){
 	location.href =
 		"${context}"
-		+"/admin.do?action=search&page=main&team_id="
+		+"/admin.do?action=search&page=main&option=team_id&word="
 		+prompt('팀 이름을 입력하세요.');
 }
 ); 

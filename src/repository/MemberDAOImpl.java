@@ -39,45 +39,11 @@ public class MemberDAOImpl implements MemberDAO{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		/*if(countMember() == list.size()) {
-			System.out.println("전체 리스트 인원 호출 성공"+list);			
-		}
-*/
 		return list;
 	}
 
 	@Override
-	public List<MemberBean> findByTeamId(String word) {
-		List<MemberBean> list = new ArrayList<>();
-		MemberBean member = null;
-		try {
-			ResultSet rs = DataBaseFactory.createDataBase(Vendor.ORACLE, 
-					DBConstant.USER_NAME, DBConstant.PASSWORD)
-					.getConnection()
-					.createStatement()
-					.executeQuery(
-							String.format(MemberQuery.FIND_BY_TEAM_ID.toString(),
-									word)							
-							);
-			while(rs.next()) {
-				member = new MemberBean();
-				member.setMemberId(rs.getString("MEM_ID"));
-				member.setPass(rs.getString("PASSWORD"));
-				member.setTeamId(rs.getString("TEAM_ID"));
-				member.setName(rs.getString("NAME"));
-				member.setAge(rs.getString("AGE"));
-				member.setRoll(rs.getString("ROLL"));
-				member.setSsn(rs.getString("SSN"));
-				list.add(member);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return list;
-	}
-
-	@Override
-	public MemberBean findById(String id) {
+	public MemberBean findById(String word) {
 		MemberBean member = null;
 		try {
 			ResultSet rs = DataBaseFactory.createDataBase(Vendor.ORACLE,
@@ -85,9 +51,15 @@ public class MemberDAOImpl implements MemberDAO{
 					.getConnection()
 					.createStatement()
 					.executeQuery(
-							String.format(
+						/*	String.format(
 									MemberQuery.FIND_BY_ID.toString(),
-									id)
+									id)*/
+							//SelectQuery.select(word.split("/")[0], word.split("/")[1], word.split("/")[2])
+							QueryFactory.createQuery(
+									Vendor.SELECT, 
+									word.split("/")[0],
+									word.split("/")[1], 
+									word.split("/")[2]).getQuery()
 							);
 			while(rs.next()) {
 				member = new MemberBean();
@@ -252,6 +224,41 @@ public class MemberDAOImpl implements MemberDAO{
 			e.printStackTrace();
 		}
 		return count;
+	}
+	@Override
+	public List<MemberBean> findSome(String word) {
+		List<MemberBean> list = new ArrayList<>();
+		MemberBean member = null;
+		try {
+			ResultSet rs = DataBaseFactory.createDataBase(Vendor.ORACLE, DBConstant.USER_NAME, DBConstant.PASSWORD)
+			.getConnection()
+			.createStatement()
+			.executeQuery(
+					/*String.format(MemberQuery.FIND_SOME.toString(), 
+					word.split("/")[0].toUpperCase(),
+					word.split("/")[1].toUpperCase(),
+					word.split("/")[2]
+					)*/
+					//SelectQuery.select(word.split("/")[0], word.split("/")[1], word.split("/")[2])
+					QueryFactory.createQuery(Vendor.SELECT, word.split("/")[0], word.split("/")[1], word.split("/")[2]).getQuery()
+			);
+			
+			while(rs.next()) {
+				member = new MemberBean();
+				member.setMemberId(rs.getString("MEM_ID"));
+				member.setPass(rs.getString("PASSWORD"));
+				member.setTeamId(rs.getString("TEAM_ID"));
+				member.setName(rs.getString("NAME"));
+				member.setAge(rs.getString("AGE"));
+				member.setRoll(rs.getString("ROLL"));
+				member.setSsn(rs.getString("SSN"));
+				list.add(member);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 
 }

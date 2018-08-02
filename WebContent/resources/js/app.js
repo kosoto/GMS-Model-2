@@ -26,8 +26,57 @@ var admin = (()=>{
 			}else{
 				alert('관리자만 접근이 허용됩니다.');
 			}
+		},
+		main : x=>{
+			document.getElementById('searchBtn')
+			.addEventListener('click',function(){
+				if(document.getElementById('option').value !== 'none'){
+					if(document.getElementById('word').value!==""){
+						var action = "";
+						var page = "";
+						switch(document.getElementById('option').value){
+						case 'mem_id' :
+							action = "retrieve";
+							page = "memberDetail"
+							break;
+						case 'name' :		
+						case 'team_id' :
+							action = "search";
+							page = "main";
+							break;
+						default : break;
+						}
+					 location.href = x
+					+"/admin.do?"
+					+"action="+action
+					+"&page="+page
+					+"&option="
+					+document.getElementById('option').value
+					+"&word="
+					+document.getElementById('word').value
+					+"&table=member"
+					}else{
+						alert('검색어를 입력하세요.');
+					}
+				}else{
+					 alert('검색조건을 선택하세요');
+				}
+			});
+			document.getElementById('contentBoxMeta').style.width = '80%';
+			document.getElementById('contentBoxMeta').className = 'bgColorisYellow';
+			for(var i of document.querySelectorAll('.username')){
+                 service.addClass(i,'cursor fontColorBlue');
+                 i.addEventListener('click',function(){
+                       location.href = x
+                            +"/admin.do?action=retrieve&page=memberDetail&option=mem_id&table=member&word="
+                           +this.getAttribute('id');//콜백함수에서의 this는 이 함수를 호출한 객체
+                 });
+            
+            };
 		}
-	};})();
+	}
+}
+)();
 var service = (()=>{
 	return {
 		nullChecker : x=>{
@@ -41,12 +90,12 @@ var service = (()=>{
 				}
 			}
 			return json;
-			/*for(i=0;i<x.length;i++){ // for loop
-				if(x[i] === ""){
-					return false;
-				};
-			};
-			return true;*/
+		},
+		addClass : (dom,cName)=>{
+			var arr = cName.split(" ");
+				if(arr.indexof(cName) == -1){ //없을때 -1을 리턴
+					dom.className += " " + cName;
+				}
 		},
 		loginvalidation : x => {
 			var flag = false;

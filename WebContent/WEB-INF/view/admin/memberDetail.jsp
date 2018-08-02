@@ -31,35 +31,5 @@
 		<td>${user.roll}</td>
 		</tr>
 	</table>
-		<a id="moveUpdateForm">정보수정</a> &nbsp; &nbsp;
-		<a id="moveDeleteForm">회원탈퇴</a> 
-	
-<script>
-document.getElementById('moveUpdateForm')
-	.addEventListener('click',
-			function(){  //콜백 함수, 뒤따라 연이어 호출되는 함수
-				router.move(
-						{context : '${context}',
-						domain : 'member',
-						action : 'move',
-						page : 'update_form'
-							}
-						)
-			}
-	);
-
-document.getElementById('moveDeleteForm')
-	.addEventListener('click',
-			function(){  //콜백 함수, 뒤따라 연이어 호출되는 함수
-				router.move(
-					{context : '${context}',
-					domain : 'member',
-					action : 'move',
-					page : 'delete_form'
-						}
-					)
-			}
-	);
-</script>
 </body>
 </html>

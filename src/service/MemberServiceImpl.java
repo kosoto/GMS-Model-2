@@ -16,11 +16,6 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public List<MemberBean> findByTeamId(String teamId) {
-		return MemberDAOImpl.getInstance().findByTeamId(teamId);
-	}
-
-	@Override
 	public MemberBean findById(String id) {
 		return MemberDAOImpl.getInstance().findById(id);
 	}
@@ -51,6 +46,13 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int countMember() {
 		return MemberDAOImpl.getInstance().countMember();
+	}
+
+
+
+	@Override
+	public List<MemberBean> findSome(String word) {
+		return MemberDAOImpl.getInstance().findSome(word);
 	}
 
 }

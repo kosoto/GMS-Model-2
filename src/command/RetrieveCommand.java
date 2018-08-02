@@ -15,10 +15,17 @@ public class RetrieveCommand extends Command{
 	}
 	@Override
 	public void execute() {
+		System.out.println("리트리버 커맨드 테이블 :"+request.getParameter("table"));
+		System.out.println("리드리버 커맨드 옵션 : "+request.getParameter("option"));
 		request.setAttribute("user", 
 				MemberServiceImpl
 				.getInstance()
-				.findById(request.getParameter("user_id")));
+				.findById(
+						request.getParameter("table")+"/"+
+						request.getParameter("option")+"/"+
+						request.getParameter("word")
+						)
+				);
 		super.execute();
 	}
 }

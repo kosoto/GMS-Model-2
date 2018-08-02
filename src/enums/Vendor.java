@@ -1,5 +1,5 @@
 package enums;
 
 public enum Vendor {
-	ORACLE,MYSQL,MARIADB,MSSQL
+	ORACLE,MYSQL,MARIADB,MSSQL,SELECT
 }

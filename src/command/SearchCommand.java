@@ -2,7 +2,6 @@ package command;
 
 import java.util.*;
 import javax.servlet.http.HttpServletRequest;
-import domain.MemberBean;
 import service.MemberServiceImpl;
 
 public class SearchCommand extends Command{
@@ -16,10 +15,12 @@ public class SearchCommand extends Command{
 	}
 	@Override
 	public void execute() {
-		List<MemberBean> members = new ArrayList<>();
-		if(!(request.getParameter("team_id")==null)) {
-			members = MemberServiceImpl.getInstance().findByTeamId(
-					request.getParameter("team_id"));
+		List<?> members ;
+		if(!(request.getParameter("option")==null)) {
+			members = MemberServiceImpl.getInstance().findSome(
+					request.getParameter("table")+"/"+
+					request.getParameter("option")+"/"+
+					request.getParameter("word"));
 		}else {
 			members = MemberServiceImpl.getInstance().memberList();
 		}
