@@ -11,21 +11,26 @@ var router = ( ()=>{
 var admin = (()=>{
 	return{
 		check : x=>{
-			var isAdmin = confirm('관리자입니까?'); //window의 method,BOM객체
+			router.move(
+					{context : x,
+					domain : 'admin',
+					action : 'search',
+					page : 'main'}
+					)
+			/*var isAdmin = confirm('관리자입니까?'); //window의 method,BOM객체
 			if(isAdmin){
 				var password = prompt('관리자 비번을 입력바랍니다.');
 				if(password == 1){
 					router.move(
-							{
-								context : x,
-								domain : 'admin',
-								action : 'search',
-								page : 'main'}
+							{context : x,
+							domain : 'admin',
+							action : 'search',
+							page : 'main'}
 							)
 				}
 			}else{
 				alert('관리자만 접근이 허용됩니다.');
-			}
+			}*/
 		},
 		main : x=>{
 			document.getElementById('searchBtn')
@@ -73,7 +78,10 @@ var admin = (()=>{
                  });
             
             };
-		}
+           /* for(var i of document.querySelectorAll('.page')){
+            	service.addClass(i,'cursor ');
+            }*/
+		}//main method 끝
 	}
 }
 )();
@@ -93,6 +101,7 @@ var service = (()=>{
 		},
 		addClass : (dom,cName)=>{
 			var arr = cName.split(" ");
+			alert(arr.indexof(cName));
 				if(arr.indexof(cName) == -1){ //없을때 -1을 리턴
 					dom.className += " " + cName;
 				}

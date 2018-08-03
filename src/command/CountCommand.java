@@ -20,7 +20,6 @@ public class CountCommand extends Command {
 	public void execute() {
 		request.setAttribute("count",
 				MemberServiceImpl.getInstance().countMember());
-		;
 		super.execute();
 	}
 }

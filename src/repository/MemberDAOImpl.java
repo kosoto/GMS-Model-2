@@ -6,6 +6,8 @@ import domain.*;
 import enums.*;
 import factory.*;
 import pool.DBConstant;
+import template.PstmtQuery;
+import template.QueryTemplate;
 
 public class MemberDAOImpl implements MemberDAO{
 	private static MemberDAO instance = new MemberDAOImpl();
@@ -34,6 +36,7 @@ public class MemberDAOImpl implements MemberDAO{
 				member.setAge(rs.getString("AGE"));
 				member.setRoll(rs.getString("ROLL"));
 				member.setSsn(rs.getString("SSN"));
+				member.setGender(rs.getString("GENDER"));
 				list.add(member);
 			}
 		} catch (Exception e) {
@@ -70,6 +73,7 @@ public class MemberDAOImpl implements MemberDAO{
 				member.setAge(rs.getString("AGE"));
 				member.setRoll(rs.getString("ROLL"));
 				member.setSsn(rs.getString("SSN"));
+				member.setGender(rs.getString("GENDER"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -130,7 +134,9 @@ public class MemberDAOImpl implements MemberDAO{
 									+" NAME, "
 									+" SSN, "
 									+" ROLL, "
-									+" PASSWORD "
+									+" PASSWORD, "
+									+" GENDER, "
+									+" AGE "
 									+" FROM MEMBER "
 									+" WHERE MEM_ID LIKE '%s' "
 									+" AND PASSWORD LIKE '%s' "
@@ -140,9 +146,11 @@ public class MemberDAOImpl implements MemberDAO{
 				mem.setMemberId(rs.getString("MEMID"));
 				mem.setPass(rs.getString("PASSWORD"));
 				mem.setTeamId(rs.getString("TEAMID"));
+				mem.setGender(rs.getString("GENDER"));
 				mem.setName(rs.getString("NAME"));
 				mem.setSsn(rs.getString("SSN"));
 				mem.setRoll(rs.getString("ROLL"));
+				mem.setAge(rs.getString("AGE"));
 			}				
 		} catch (Exception e) {			
 			e.printStackTrace();
@@ -227,37 +235,16 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 	@Override
 	public List<MemberBean> findSome(String word) {
+		QueryTemplate q = new PstmtQuery();
 		List<MemberBean> list = new ArrayList<>();
-		MemberBean member = null;
-		try {
-			ResultSet rs = DataBaseFactory.createDataBase(Vendor.ORACLE, DBConstant.USER_NAME, DBConstant.PASSWORD)
-			.getConnection()
-			.createStatement()
-			.executeQuery(
-					/*String.format(MemberQuery.FIND_SOME.toString(), 
-					word.split("/")[0].toUpperCase(),
-					word.split("/")[1].toUpperCase(),
-					word.split("/")[2]
-					)*/
-					//SelectQuery.select(word.split("/")[0], word.split("/")[1], word.split("/")[2])
-					QueryFactory.createQuery(Vendor.SELECT, word.split("/")[0], word.split("/")[1], word.split("/")[2]).getQuery()
-			);
-			
-			while(rs.next()) {
-				member = new MemberBean();
-				member.setMemberId(rs.getString("MEM_ID"));
-				member.setPass(rs.getString("PASSWORD"));
-				member.setTeamId(rs.getString("TEAM_ID"));
-				member.setName(rs.getString("NAME"));
-				member.setAge(rs.getString("AGE"));
-				member.setRoll(rs.getString("ROLL"));
-				member.setSsn(rs.getString("SSN"));
-				list.add(member);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("column", word.split("/")[0]);
+		map.put("value", word.split("/")[1]);
+		map.put("table", Domain.MEMBER);
+		q.play(map);
+		for(Object s: q.getList()) {
+			list.add((MemberBean) s);
 		}
-		
 		return list;
 	}
 

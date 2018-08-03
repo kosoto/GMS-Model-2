@@ -24,7 +24,6 @@
 		<c:forEach items="${list}" var="member">
 		<tr>
 			<td>${member.memberId}</td>
-			<%-- <td><a href="${context}/admin.do?action=retrieve&page=memberDetail&user_id=${member.memberId}" style="cursor: pointer;">${member.name}</a></td> --%> <!-- 이렇게 하지 말자 -->
 			<td><a class="username" id="${member.memberId}">${member.name}</a></td>
 			<td>${member.age}</td>
 			<td>${member.gender}</td>
@@ -32,6 +31,14 @@
 			<td>${member.teamId}</td>
 		</tr>
 		</c:forEach>
+		<tr>
+			<td colspan="6">
+				<%-- 전체 회원수 : ${count} --%>
+				<c:forEach begin="1" end="${count/5}" step="1" var="i" >
+					<span class="pageNum" id="page${i}">${i} </span>				
+				</c:forEach> 
+			</td>
+		</tr>
 	</table>
 	</div>
 </div>

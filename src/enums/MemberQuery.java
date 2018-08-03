@@ -43,6 +43,14 @@ public enum MemberQuery {
 			break;
 		case MEMBER_LIST : 
 			query = "SELECT * FROM MEMBER";
+			/*query = 
+			  "SELECT * FROM ( "
+			+ "SELECT ROWNUM NO, A.* "
+			+ "FROM ( "
+			+ "SELECT * "
+			+ "FROM MEMBER) A "
+			+ "ORDER BY NO DESC) B "
+			+ "WHERE NO BETWEEN 6 AND 15";*/
 			break;
 		case FIND_BY_ID : 
 			query = "SELECT * FROM MEMBER "

@@ -23,7 +23,6 @@ public class SelectQuery implements Query{
 				"SELECT * FROM "+table
 				+" WHERE "+column
 				+" LIKE '%"+word.toUpperCase()+"%'";
-		System.out.println("쿼리 클래스 쿼리 :"+query);
 		return query;
 	}
 }

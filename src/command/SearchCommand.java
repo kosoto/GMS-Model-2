@@ -24,6 +24,7 @@ public class SearchCommand extends Command{
 		}else {
 			members = MemberServiceImpl.getInstance().memberList();
 		}
+		request.setAttribute("count", MemberServiceImpl.getInstance().countMember());
 		request.setAttribute("list", members);
 		super.execute();
 	}

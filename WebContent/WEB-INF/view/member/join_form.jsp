@@ -25,6 +25,8 @@
 			value="steam" />왕거북이
 		<input type="radio" name="teamid" 
 			value="cteam" />코딩짱
+			<input type="radio" name="teamid" 
+			value="none" />없음
 		<br>	
 	프로젝트역활
 		<select name="roll" id="roll">
@@ -33,6 +35,7 @@
 			<option value="back">백단개발</option>
 			<option value="android">안드로이드개발</option>
 			<option value="minfe">민폐</option>
+			<option value="none">없음</option>
 		</select>		
 		<br>
 	수강과목
