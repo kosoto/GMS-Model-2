@@ -7,15 +7,15 @@ public class SelectQuery implements Query{
 		this.column = column;
 		this.word = word;
 	}
-	
-	public static String select(String table, String column, String word) {
+	 
+	/*public static String select(String table, String column, String word) {
 		String query =
 				"SELECT * FROM "+table
 				+" WHERE "+column
 				+" LIKE '%"+word.toUpperCase()+"%'";
 		System.out.println("쿼리 클래스 쿼리 :"+query);
 		return query;
-	}
+	}*/
 
 	@Override
 	public String getQuery() {
