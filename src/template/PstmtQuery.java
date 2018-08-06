@@ -21,7 +21,7 @@ public class PstmtQuery extends QueryTemplate{
 					+ " LIKE ? ",
 					map.get("table"),
 					map.get("column"))
-					);
+					); 
 			break;
 		case "list": 
 			map.put("sql", String.format(
