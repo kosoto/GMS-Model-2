@@ -141,3 +141,11 @@ div#footer{
 .marginBot50px{margin-bottom: 50px}
 .width300px{width: 300px}
 .floatRight{float: right;}
+.pageBox{
+	list-style : none; /* Remove list bullets */
+	padding:  0;
+	margin: 0;
+}
+.pageBox li{
+	 display: inline;
+}

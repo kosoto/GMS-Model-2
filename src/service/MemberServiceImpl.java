@@ -1,6 +1,8 @@
 package service;
 
 import java.util.List;
+import java.util.Map;
+
 import domain.MemberBean;
 import repository.MemberDAOImpl;
 
@@ -54,5 +56,15 @@ public class MemberServiceImpl implements MemberService{
 	public List<MemberBean> findSome(String word) {
 		return MemberDAOImpl.getInstance().findSome(word);
 	}
+
+
+
+	@Override
+	public List<MemberBean> getList(Map<?, ?> param) {
+		return MemberDAOImpl.getInstance().selectList(param);
+	}
+
+
+
 
 }

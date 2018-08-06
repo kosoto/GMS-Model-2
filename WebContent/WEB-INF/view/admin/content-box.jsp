@@ -21,7 +21,7 @@
 			<th>역 활</th>
 			<th>팀 명</th>
 		</tr>
-		<c:forEach items="${list}" var="member">
+		<c:forEach items="${list}" var="member" >
 		<tr>
 			<td>${member.memberId}</td>
 			<td><a class="username" id="${member.memberId}">${member.name}</a></td>
@@ -33,10 +33,19 @@
 		</c:forEach>
 		<tr>
 			<td colspan="6">
-				<%-- 전체 회원수 : ${count} --%>
-				<c:forEach begin="1" end="${count/5}" step="1" var="i" >
-					<span class="pageNum" id="page${i}">${i} </span>				
-				</c:forEach> 
+				전체 회원수 : ${count} 
+				<ul class="pageBox">
+					<c:forEach begin="${beginPage}" end="${endPage}" step="1" varStatus="i">
+					<li>
+						<a href="#" id="page${i.index}">${i.index}</a>				
+					</li>
+					</c:forEach> 
+					<c:if test="${count gt endpage*5}">
+						<li>
+							<a href="#">다음▶</a>
+						</li>
+					</c:if>
+				</ul>
 			</td>
 		</tr>
 	</table>
@@ -44,15 +53,6 @@
 </div>
 <script>
 	admin.main('${context}');
-/*
-service.addClass(
-		document.getElementById(''),
-		'className '  한개일땐 뒤에 빈칸넣기
-); */
-
-
-
-
 </script>
 
 

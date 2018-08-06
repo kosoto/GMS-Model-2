@@ -1,12 +1,14 @@
 package service;
 
 import java.util.List;
+import java.util.Map;
 
 import domain.MemberBean;
 
 public interface MemberService {
 	public String createMember(MemberBean member);
 	public List<MemberBean> memberList();
+	public List<MemberBean> getList(Map<?,?>param);
 	public List<MemberBean> findSome(String word);
 	public MemberBean findById(String id);
 	public int countMember();

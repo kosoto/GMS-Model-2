@@ -31,9 +31,6 @@ public class CommonController extends HttpServlet {
 					);
 			i++;
 		}
-		/*request.getSession().
-		setAttribute(Term.CONTEXT.toString(),
-				request.getContextPath());*/
 		request.getRequestDispatcher(
 				Term.WEBPATH.toString()+
 				Term.MAIN.toString())

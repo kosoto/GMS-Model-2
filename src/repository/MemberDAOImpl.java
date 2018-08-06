@@ -6,8 +6,7 @@ import domain.*;
 import enums.*;
 import factory.*;
 import pool.DBConstant;
-import template.PstmtQuery;
-import template.QueryTemplate;
+import template.*;
 
 public class MemberDAOImpl implements MemberDAO{
 	private static MemberDAO instance = new MemberDAOImpl();
@@ -54,15 +53,15 @@ public class MemberDAOImpl implements MemberDAO{
 					.getConnection()
 					.createStatement()
 					.executeQuery(
-						/*	String.format(
+							String.format(
 									MemberQuery.FIND_BY_ID.toString(),
-									id)*/
+									word.split("/")[2])
 							//SelectQuery.select(word.split("/")[0], word.split("/")[1], word.split("/")[2])
-							QueryFactory.createQuery(
+							/*QueryFactory.createQuery(
 									Vendor.SELECT, 
 									word.split("/")[0],
 									word.split("/")[1], 
-									word.split("/")[2]).getQuery()
+									word.split("/")[2]).getQuery()*/
 							);
 			while(rs.next()) {
 				member = new MemberBean();
@@ -238,11 +237,27 @@ public class MemberDAOImpl implements MemberDAO{
 		QueryTemplate q = new PstmtQuery();
 		List<MemberBean> list = new ArrayList<>();
 		HashMap<String, Object> map = new HashMap<>();
-		map.put("column", word.split("/")[0]);
-		map.put("value", word.split("/")[1]);
+		map.put("column", word.split("/")[1]);
+		map.put("value", word.split("/")[2]);
 		map.put("table", Domain.MEMBER);
+		map.put("switch", "find");
 		q.play(map);
 		for(Object s: q.getList()) {
+			list.add((MemberBean) s);
+		}
+		return list;
+	}
+	@Override
+	public List<MemberBean> selectList(Map<?, ?> param) {
+		QueryTemplate q = new PstmtQuery();
+		List<MemberBean> list = new ArrayList<>();
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("table", Domain.MEMBER);
+		map.put("beginRow", (String) param.get("beginRow"));
+		map.put("endRow", (String) param.get("endRow"));
+		map.put("switch", "list");
+		q.play(map);
+		for(Object s : q.getList()) {
 			list.add((MemberBean) s);
 		}
 		return list;

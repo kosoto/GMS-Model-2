@@ -1,12 +1,14 @@
 package repository;
 
 import java.util.List;
+import java.util.Map;
 
 import domain.MemberBean;
 
 public interface MemberDAO {
 	public String insertMember(MemberBean member);
 	public List<MemberBean> memberList();
+	public List<MemberBean> selectList(Map<?,?>param);
 	public List<MemberBean> findSome(String word);
 	public MemberBean findById(String word);
 	public int countMember();

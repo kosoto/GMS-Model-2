@@ -101,8 +101,7 @@ var service = (()=>{
 		},
 		addClass : (dom,cName)=>{
 			var arr = cName.split(" ");
-			alert(arr.indexof(cName));
-				if(arr.indexof(cName) == -1){ //없을때 -1을 리턴
+				if(arr.indexOf(cName) == -1){ //없을때 -1을 리턴
 					dom.className += " " + cName;
 				}
 		},
