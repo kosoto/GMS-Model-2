@@ -14,7 +14,7 @@ public class PstmtQuery extends QueryTemplate{
 		case "find":
 			map.put("sql",String.format(
 					" SELECT "
-					+ "*"
+					+ "*" 
 					//+ ColumnFinder.find(Domain.MEMBER)
 					+ " FROM %s "
 					+ " WHERE %s "
