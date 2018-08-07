@@ -44,7 +44,6 @@ public class PstmtQuery extends QueryTemplate{
 			pstmt = DataBaseFactory.createDataBase2(map).getConnection()
 					.prepareStatement((String) map.get("sql"));
 			int temp = ((String) map.get("sql")).indexOf("?");
-			System.out.println("템플릿 "+temp);
 			if(temp != -1) {
 				pstmt.setString(1, //index 는 1부터
 						"%"+map.get("value").toString()+"%");

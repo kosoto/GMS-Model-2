@@ -24,7 +24,11 @@
 		<c:forEach items="${list}" var="member" >
 		<tr>
 			<td>${member.memberId}</td>
-			<td><a class="username" id="${member.memberId}">${member.name}</a></td>
+			<td>
+				<a class="username" id="${member.memberId}">
+					${member.name}
+				</a>
+			</td>
 			<td>${member.age}</td>
 			<td>${member.gender}</td>
 			<td>${member.roll}</td>
@@ -35,14 +39,19 @@
 			<td colspan="6">
 				전체 회원수 : ${count} 
 				<ul class="pageBox">
+					<c:if test="${existPrev}">
+						<li>
+							<a class="pageNum" id="${beginPage-1}">◀이전</a>
+						</li>
+					</c:if>
 					<c:forEach begin="${beginPage}" end="${endPage}" step="1" varStatus="i">
 					<li>
-						<a href="#" id="page${i.index}">${i.index}</a>				
+						<a class="pageNum" id="${i.index}">${i.index}</a>				
 					</li>
 					</c:forEach> 
-					<c:if test="${count gt endpage*5}">
+					<c:if test="${exisNext}">
 						<li>
-							<a href="#">다음▶</a>
+							<a class="pageNum" id="${endPage+1}">다음▶</a>
 						</li>
 					</c:if>
 				</ul>

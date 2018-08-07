@@ -2,8 +2,6 @@ package command;
 
 import java.util.*;
 import javax.servlet.http.HttpServletRequest;
-
-import domain.MemberBean;
 import service.MemberServiceImpl;
 
 public class SearchCommand extends Command{
@@ -17,47 +15,37 @@ public class SearchCommand extends Command{
 	}
 	@Override
 	public void execute() {
-		List<?> members ;
+		List<?> members;
 		if(!(request.getParameter("option")==null)) {
+			//검색리스트 코딩영역
 			members = MemberServiceImpl.getInstance().findSome(
 					request.getParameter("table")+"/"+
 					request.getParameter("option")+"/"+
 					request.getParameter("word"));
-		}else {
-			//members = MemberServiceImpl.getInstance().memberList();
-		
-			request.setAttribute("count", MemberServiceImpl.getInstance().countMember());
-			
-			int count = (int) request.getAttribute("count");
-			int beginPage = 1;
-			int endPage = 0;
-			if(request.getAttribute("beginPage")==null) {
-				request.setAttribute("beginPage", beginPage);
+		}else {//전체 리스트 코딩 영역
+			if(request.getParameter("pageNum")==null) {
+				request.setAttribute("pageNum", "1");
 			}else {
-				//request.setAttribute("beginPage", request.getAttribute("page"));
-				//page로 뷰에서 받아오는 로직 짜기
+				request.setAttribute("pageNum", request.getParameter("pageNum"));
 			}
-			
-			if(request.getAttribute("endPage")==null) {
-				if(MemberServiceImpl.getInstance().countMember()>25){
-					request.setAttribute("endPage", "5");
-				}else {
-					endPage = ((count%5==0)?count/5:count/5+1);
-					request.setAttribute("endPage", endPage);
-				}
-			}else {
-				//request.setAttribute("endPage", "");
-			}
+			int pageNum = Integer.parseInt(((String) request.getAttribute("pageNum"))), count = MemberServiceImpl.getInstance().countMember();
+			request.setAttribute("count", count);
+			int pageSize = 5,blockSize = 5, beginPage = ((int)((Integer.parseInt((String) request.getAttribute("pageNum"))-1)/pageSize))*pageSize+1;
+			request.setAttribute("beginPage", beginPage);
+			//int endPage = (count>(beginPage+(blockSize-1))*pageSize)?beginPage+(blockSize-1):(((count%pageSize==0)?count/pageSize:count/pageSize+1));
+			int endPage = (count>(beginPage+(blockSize-1))*pageSize)?beginPage+(blockSize-1):(int)(Math.ceil(count/(double)pageSize));
+			request.setAttribute("endPage", endPage);
 			Map<String,Object>param = new HashMap<>();
-			int beginRow = 1;
-			/*endPage = 5;
-			int endRow= (count>endPage*5)?endPage*5:count;*/
-			int endRow = 5;
+			int beginRow = (pageNum-1)*pageSize+1,endRow= (count>pageNum*pageSize)?pageNum*pageSize:count;
 			param.put("beginRow", String.valueOf(beginRow));
 			param.put("endRow", String.valueOf(endRow));
 			members = MemberServiceImpl.getInstance().getList(param);
+			boolean existPrev = (beginPage>1)?true:false;
+			request.setAttribute("existPrev", existPrev);
+			boolean exisNext = (count >endPage*5 )?true:false;
+			request.setAttribute("exisNext", exisNext);
 		}
-		
+		//공통 코딩 영역
 		request.setAttribute("list", members);
 		super.execute();
 	}

@@ -66,7 +66,7 @@ var admin = (()=>{
 				}else{
 					 alert('검색조건을 선택하세요');
 				}
-			});
+			}); //'searchBtn' 끝
 			document.getElementById('contentBoxMeta').style.width = '80%';
 			document.getElementById('contentBoxMeta').className = 'bgColorisYellow';
 			for(var i of document.querySelectorAll('.username')){
@@ -78,9 +78,14 @@ var admin = (()=>{
                  });
             
             };
-           /* for(var i of document.querySelectorAll('.page')){
-            	service.addClass(i,'cursor ');
-            }*/
+            for(var i of document.querySelectorAll('.pageNum')){
+            	service.addClass(i,'cursor fontColorBlue');
+            	i.addEventListener('click',function(){
+        			location.href = x
+        			+"/admin.do?action=search&page=main&pageNum="
+        			+this.getAttribute('id');
+        		});
+        	};
 		}//main method 끝
 	}
 }
