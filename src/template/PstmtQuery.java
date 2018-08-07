@@ -35,7 +35,6 @@ public class PstmtQuery extends QueryTemplate{
 					map.get("endRow")));
 			break;
 		}
-		
 	}
 
 	@Override

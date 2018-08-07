@@ -2,6 +2,9 @@ package command;
 
 import java.util.*;
 import javax.servlet.http.HttpServletRequest;
+
+import proxy.PageProxy;
+import proxy.Proxy;
 import service.MemberServiceImpl;
 
 public class SearchCommand extends Command{
@@ -23,26 +26,25 @@ public class SearchCommand extends Command{
 					request.getParameter("option")+"/"+
 					request.getParameter("word")); 
 		}else {//전체 리스트 코딩 영역
-			if(request.getParameter("pageNum")==null) {
-				request.setAttribute("pageNum", "1");
-			}else {
-				request.setAttribute("pageNum", request.getParameter("pageNum"));
-			}
-			int pageNum = Integer.parseInt(((String) request.getAttribute("pageNum"))), count = MemberServiceImpl.getInstance().countMember();
-			request.setAttribute("count", count);
-			int pageSize = 5,blockSize = 5, beginPage = ((int)((Integer.parseInt((String) request.getAttribute("pageNum"))-1)/pageSize))*pageSize+1;
-			request.setAttribute("beginPage", beginPage);
-			//int endPage = (count>(beginPage+(blockSize-1))*pageSize)?beginPage+(blockSize-1):(((count%pageSize==0)?count/pageSize:count/pageSize+1));
-			int endPage = (count>(beginPage+(blockSize-1))*pageSize)?beginPage+(blockSize-1):(int)(Math.ceil(count/(double)pageSize));
-			request.setAttribute("endPage", endPage);
+			int pageNum = (request.getParameter("pageNum")==null)?
+					1:Integer.parseInt(request.getParameter("pageNum")),
+				count = MemberServiceImpl.getInstance().countMember(), 
+				pageSize = 5, blockSize = 5, 
+				beginPage = Math.floorDiv(pageNum-1, pageSize)*pageSize+1, 
+				endPage = (count>(beginPage+(blockSize-1))*pageSize)?
+						beginPage+(blockSize-1):(int)(Math.ceil(count/(double)pageSize)), 
+				beginRow = (pageNum-1)*pageSize+1, 
+				endRow = (count>pageNum*pageSize)?pageNum*pageSize:count;
 			Map<String,Object>param = new HashMap<>();
-			int beginRow = (pageNum-1)*pageSize+1,endRow= (count>pageNum*pageSize)?pageNum*pageSize:count;
 			param.put("beginRow", String.valueOf(beginRow));
 			param.put("endRow", String.valueOf(endRow));
 			members = MemberServiceImpl.getInstance().getList(param);
-			boolean existPrev = (beginPage>1)?true:false;
+			boolean existPrev = (beginPage>1)?true:false, exisNext = (count >endPage*5 )?true:false;
+			request.setAttribute("pageNum", pageNum);
+			request.setAttribute("count", count);
+			request.setAttribute("beginPage", beginPage);
+			request.setAttribute("endPage", endPage);
 			request.setAttribute("existPrev", existPrev);
-			boolean exisNext = (count >endPage*5 )?true:false;
 			request.setAttribute("exisNext", exisNext);
 		}
 		//공통 코딩 영역
