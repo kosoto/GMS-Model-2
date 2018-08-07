@@ -29,7 +29,7 @@
 					${member.name}
 				</a>
 			</td>
-			<td>${member.age}</td>
+			<td>${member.age}</td> 
 			<td>${member.gender}</td>
 			<td>${member.roll}</td>
 			<td>${member.teamId}</td>
