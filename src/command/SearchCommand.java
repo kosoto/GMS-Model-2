@@ -21,7 +21,7 @@ public class SearchCommand extends Command{
 			members = MemberServiceImpl.getInstance().findSome(
 					request.getParameter("table")+"/"+
 					request.getParameter("option")+"/"+
-					request.getParameter("word"));
+					request.getParameter("word")); 
 		}else {//전체 리스트 코딩 영역
 			if(request.getParameter("pageNum")==null) {
 				request.setAttribute("pageNum", "1");
