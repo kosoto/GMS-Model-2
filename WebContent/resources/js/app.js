@@ -76,7 +76,6 @@ var admin = (()=>{
                             +"/admin.do?action=retrieve&page=memberDetail&option=mem_id&table=member&word="
                            +this.getAttribute('id');//콜백함수에서의 this는 이 함수를 호출한 객체
                  });
-            
             };
             for(var i of document.querySelectorAll('.pageNum')){
             	service.addClass(i,'cursor fontColorBlue');
@@ -86,6 +85,7 @@ var admin = (()=>{
         			+this.getAttribute('id');
         		});
         	};
+        	
 		}//main method 끝
 	}
 }
@@ -145,7 +145,7 @@ var service = (()=>{
 		}
 	};
 })();
-//memberId,teamId,name,ssn,roll,pass,age,gender;
+
 var member = (()=> {
 	var _memberId,_ssn,_pass,_name,_age,_teamId,_gender,_roll;		
 	var setMemberId = (memberId)=> {
