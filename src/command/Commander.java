@@ -9,11 +9,8 @@ public class Commander {
 		Command cmd = null;
 		switch(Action.valueOf(request.getParameter("action")
 				.toUpperCase())) {
-		case MOVE:
-			cmd = new MoveCommand(request);
-			break;
-		case CREATE : 
-		    cmd = new CreateCommand(request);
+		case ADD : 
+		    cmd = new AddCommand(request);
 			break;
 		case SEARCH: 
 			cmd = new SearchCommand(request);
@@ -24,11 +21,14 @@ public class Commander {
 		case COUNT : 
 			cmd = new CountCommand(request);
 			break;
-		case UPDATE:
-			cmd = new UpdateCommand(request);
+		case MODIFY:
+			cmd = new ModifyCommand(request);
 			break;
-		case DELETE:
-			cmd = new DeleteCommand(request);
+		case REMOVE:
+			cmd = new RemoveCommand(request);
+			break;
+		case MOVE:
+			cmd = new MoveCommand(request);
 			break;
 		case LOGIN: 
 			cmd = new LoginCommand(request);

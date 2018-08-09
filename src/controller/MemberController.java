@@ -17,12 +17,9 @@ public class MemberController extends HttpServlet {
     }
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Sentry.init(request);
-		switch(Action.valueOf(Sentry.cmd.getAction().toUpperCase())) {
-		case MOVE : 
-			Carrier.forward(request, response);
-			break;
-		case CREATE :
+		Receiver.init(request);
+		switch(Action.valueOf(Receiver.cmd.getAction().toUpperCase())) {
+		case ADD :
 			Carrier.redirect(request, response,
 					"/member.do?action=move&page=user_login_form");
 			break;
@@ -37,12 +34,15 @@ public class MemberController extends HttpServlet {
 		case COUNT :
 			Carrier.redirect(request, response, "");
 			break;
-		case UPDATE :
+		case MODIFY :
 			Carrier.redirect(request, response, 
 					"/member.do?action=move&page=my_page");
 			break;
-		case DELETE :
+		case REMOVE :
 			Carrier.redirect(request, response,"");
+			break;
+		case MOVE : 
+			Carrier.forward(request, response);
 			break;
 		case LOGIN :
 			if(request.getAttribute("match").equals("TRUE")) {

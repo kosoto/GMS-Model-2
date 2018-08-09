@@ -32,8 +32,10 @@ public class CommonController extends HttpServlet {
 			i++;
 		}
 		request.getRequestDispatcher(
-				Term.WEBPATH.toString()+
-				Term.MAIN.toString())
+				Term.WEBPATH.toString()
+				+request.getServletPath()
+					.substring(1, request.getServletPath().indexOf("."))
+				+Term.MAIN.toString())
 		.forward(request, response);
 	}
 }

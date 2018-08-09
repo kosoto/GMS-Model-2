@@ -1,9 +1,8 @@
 package template;
 
 import java.sql.ResultSet;
-
 import domain.MemberBean;
-import enums.Domain;
+import enums.MemberQuery;
 import factory.DataBaseFactory;
 
 public class PstmtQuery extends QueryTemplate{
@@ -24,15 +23,27 @@ public class PstmtQuery extends QueryTemplate{
 					); 
 			break;
 		case "list": 
+			map.put("sql", MemberQuery.LIST.toString());
+			break;
+		case "insert": 
 			map.put("sql", String.format(
-					"SELECT T.* "
-					+"FROM (SELECT ROWNUM SEQ, M.* "
-					+"FROM %s M "
-					+"ORDER BY SEQ DESC) T "
-					+"WHERE T.SEQ BETWEEN %s AND %s ", 
-					map.get("table"),
-					map.get("beginRow"),
-					map.get("endRow")));
+					 "INSERT INTO %s "
+					+ "(MEM_ID, NAME, SSN, PASSWORD, AGE, "
+					+ "GENDER, ROLL, TEAM_ID) "
+					+ "VALUES "
+					+ "('%s','%s','%s','%s','%s', "
+					+ "'%s', '%s', '%s')",
+					map.get("domain"),
+					map.get("memid"),
+					map.get("name"),
+					map.get("pass"),
+					map.get("ssn"),
+					map.get("age"),
+					map.get("gender"),
+					map.get("roll"),
+					map.get("teamid")
+					)
+					);
 			break;
 		}
 	}
@@ -42,10 +53,14 @@ public class PstmtQuery extends QueryTemplate{
 		try {
 			pstmt = DataBaseFactory.createDataBase2(map).getConnection()
 					.prepareStatement((String) map.get("sql"));
-			int temp = ((String) map.get("sql")).indexOf("?");
+			/*int temp = ((String) map.get("sql")).indexOf("?");
 			if(temp != -1) {
 				pstmt.setString(1, //index 는 1부터
 						"%"+map.get("value").toString()+"%");
+			}*/
+			int size = (((String)map.get("sql")).split("\\?")).length;
+			for(int i = 1;i<size;i++) {
+				pstmt.setString(i, map.get("value"+i).toString());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

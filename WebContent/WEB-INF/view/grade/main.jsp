@@ -8,12 +8,8 @@
 		<h1>관리자 페이지</h1>
 		<jsp:include page="../common/menu-box.jsp"/>
 	</div> <!-- header end -->
-	
+	<jsp:include page="../common/content-box.jsp"/>
 	<div id="footer">주소</div>
 </div>
-<jsp:include page="../member/search.jsp"/>
-<script >
-	admin.main('${context}');
-</script>
 </body>
 </html>

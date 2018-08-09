@@ -8,30 +8,59 @@ var router = ( ()=>{
                      +"&page="+x.page;
                 }};//closure, key(String) & value(object)의 map구조, scalar 문법
      })();  //이때는 ;이 빠지면 에러
+var common = (()=>{
+	return {
+		main : x=>{
+			document.getElementById('moveAdmin')
+			.addEventListener('click',function(){  
+				router.move(
+						{context : x,
+						domain : 'admin',
+						action : 'search',
+						page : 'main'}
+						)
+				/*var isAdmin = confirm('관리자입니까?'); //window의 method,BOM객체
+				if(isAdmin){
+					var password = prompt('관리자 비번을 입력바랍니다.');
+					if(password == 1){
+						router.move(
+								{context : x,
+								domain : 'admin',
+								action : 'search',
+								page : 'main'}
+								)
+					}
+				}else{
+					alert('관리자만 접근이 허용됩니다.');
+				}	*/	
+			}
+			);
+			document.getElementById('move_user_login_form')
+        	.addEventListener('click',
+        			function(){ 
+        			router.move(
+        					{context : '${context}',
+        						domain : 'member',
+        						action : 'move',
+        						page : 'login'}
+        					)
+        			}
+        	);
+        	document.getElementById('move_join_form')
+        	.addEventListener('click',
+        			function(){  
+        			router.move(
+        					{context :'${context}',
+        						domain :'member',
+        						action :'move',
+        						page :'add'})
+        			}
+        	);
+		}
+	};
+})();
 var admin = (()=>{
 	return{
-		check : x=>{
-			router.move(
-					{context : x,
-					domain : 'admin',
-					action : 'search',
-					page : 'main'}
-					)
-			/*var isAdmin = confirm('관리자입니까?'); //window의 method,BOM객체
-			if(isAdmin){
-				var password = prompt('관리자 비번을 입력바랍니다.');
-				if(password == 1){
-					router.move(
-							{context : x,
-							domain : 'admin',
-							action : 'search',
-							page : 'main'}
-							)
-				}
-			}else{
-				alert('관리자만 접근이 허용됩니다.');
-			}*/
-		},
 		main : x=>{
 			document.getElementById('searchBtn')
 			.addEventListener('click',function(){
@@ -85,6 +114,8 @@ var admin = (()=>{
         			+this.getAttribute('id');
         		});
         	};
+        	
+        	
         	
 		}//main method 끝
 	}

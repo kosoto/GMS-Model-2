@@ -6,11 +6,4 @@
 		<li><a id="moveAdmin">ADMIN</a></li>
 	</ul>
 </div>
-<script>
-document.getElementById('moveAdmin')
-.addEventListener('click',
-		function(){  
-			admin.check('${context}');
-		}
-);
-</script>
+

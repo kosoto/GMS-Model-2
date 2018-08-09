@@ -18,7 +18,7 @@ public class RetrieveCommand extends Command{
 		request.setAttribute("user", 
 				MemberServiceImpl
 				.getInstance()
-				.findById(
+				.retrieve(
 						request.getParameter("table")+"/"+
 						request.getParameter("option")+"/"+
 						request.getParameter("word")

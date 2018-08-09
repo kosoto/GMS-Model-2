@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.Carrier;
-import command.Sentry;
+import command.Receiver;
 import enums.Action;
 
 @WebServlet("/admin.do")
@@ -20,15 +20,15 @@ public class AdminController extends HttpServlet {
     }
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Sentry.init(request);
-		switch(Action.valueOf(Sentry.cmd.getAction().toUpperCase())) {
-		case MOVE : 
-			Carrier.forward(request, response);
-			break;
+		Receiver.init(request);
+		switch(Action.valueOf(Receiver.cmd.getAction().toUpperCase())) {
 		case SEARCH : 
 			Carrier.forward(request, response);
 			break;
 		case RETRIEVE : 
+			Carrier.forward(request, response);
+			break;
+		case MOVE : 
 			Carrier.forward(request, response);
 			break;
 		default:

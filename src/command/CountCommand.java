@@ -19,7 +19,7 @@ public class CountCommand extends Command {
 	@Override
 	public void execute() {
 		request.setAttribute("count",
-				MemberServiceImpl.getInstance().countMember());
+				MemberServiceImpl.getInstance().count());
 		super.execute();
 	}
 }

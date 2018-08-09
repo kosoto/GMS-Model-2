@@ -9,62 +9,44 @@ import repository.MemberDAOImpl;
 public class MemberServiceImpl implements MemberService{
 	private static MemberService instance = new MemberServiceImpl();
 	public static MemberService getInstance() {return instance;}
-
+	private MemberServiceImpl() {}
 	
-
 	@Override
-	public List<MemberBean> memberList() {
-		return MemberDAOImpl.getInstance().memberList();
+	public String add(MemberBean member) {
+		return MemberDAOImpl.getInstance().insert(member);
 	}
-
 	@Override
-	public MemberBean findById(String id) {
-		return MemberDAOImpl.getInstance().findById(id);
+	public List<MemberBean> search(Map<?, ?> param) {
+		return MemberDAOImpl.getInstance().selectSome(param);
 	}
-
 	@Override
-	public void updateMember(MemberBean member) {
-		MemberDAOImpl.getInstance().updateMember(member);
+	public MemberBean retrieve(String id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
-
 	@Override
-	public void deleteMember(MemberBean member) {
-		MemberDAOImpl.getInstance().deleteMember(member);
+	public int count() {
+		return MemberDAOImpl.getInstance().count();
+	}
+	@Override
+	public void modify(Map<?, ?> param) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void remove(MemberBean member) {
 		
 	}
 	@Override
 	public boolean login(MemberBean member) {
-		return ((MemberDAOImpl.getInstance().login(member))!=null);
-	}
-	@Override
-	public String createMember(MemberBean member) {
-		return MemberDAOImpl.getInstance().insertMember(member);
-		
+		// TODO Auto-generated method stub
+		return false;
 	}
 	@Override
 	public boolean existId(String id) {
-		return MemberDAOImpl.getInstance().existID(id);
+		// TODO Auto-generated method stub
+		return false;
 	}
-	@Override
-	public int countMember() {
-		return MemberDAOImpl.getInstance().countMember();
-	}
-
-
-
-	@Override
-	public List<MemberBean> findSome(String word) {
-		return MemberDAOImpl.getInstance().findSome(word);
-	}
-
-
-
-	@Override
-	public List<MemberBean> getList(Map<?, ?> param) {
-		return MemberDAOImpl.getInstance().selectList(param);
-	}
-
-
 
 
 }

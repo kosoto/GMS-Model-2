@@ -60,14 +60,3 @@
 	</table>
 	</div>
 </div>
-<script>
-	admin.main('${context}');
-</script>
-
-
-
-
-
-
-
-

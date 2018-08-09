@@ -26,7 +26,7 @@ public class LoginCommand extends Command {
 			request.setAttribute("match", "TRUE");
 			request.getSession().setAttribute("user", //세션에 담기
 					MemberServiceImpl.getInstance()
-					.findById(
+					.retrieve(
 							"member/mem_id/"+
 							request.getParameter("userid")
 							));
