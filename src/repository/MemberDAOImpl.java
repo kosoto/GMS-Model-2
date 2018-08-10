@@ -1,16 +1,12 @@
 package repository;
 
-import java.sql.ResultSet;
 import java.util.*;
-
-
 import domain.*;
 import enums.*;
-import factory.DataBaseFactory;
-import pool.DBConstant;
 import template.*;
 
 public class MemberDAOImpl implements MemberDAO{
+	private QueryTemplate q;
 	private static MemberDAO instance = new MemberDAOImpl();
 	public static MemberDAO getInstance() {return instance;}
 	private MemberDAOImpl() {}
@@ -32,25 +28,25 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 	
 	@Override
-	public MemberBean login(MemberBean member) {
-		MemberBean mem = null;
-		return mem;
+	public boolean login(MemberBean member) {
+		
+		return false;
 	}
 	@Override
 	public String insert(MemberBean member) {
 		String result = "";
-		QueryTemplate q = new PstmtQuery();
+		q = new AddQuery();
 		HashMap<String, Object>map = new HashMap<>();
 		map.put("table", Domain.MEMBER);
 		map.put("switch","insert");
-		map.put("memid", member.getMemberId());
-		map.put("name", member.getName());
-		map.put("pass", member.getPass());
-		map.put("ssn", member.getSsn());
-		map.put("age", member.getAge());
-		map.put("gender", member.getGender());
-		map.put("roll", member.getRoll());
-		map.put("teamid", member.getTeamId());
+		map.put("value1", member.getMemberId());
+		map.put("value2", member.getName());
+		map.put("value4", member.getPass());
+		map.put("value3", member.getSsn());
+		map.put("value5", member.getAge());
+		map.put("value6", member.getGender());
+		map.put("value7", member.getRoll());
+		map.put("value8", member.getTeamId().toUpperCase());
 		q.play(map);
 		return result;
 		
@@ -62,34 +58,16 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 	@Override
 	public int count() {
-		int count = 0;
-		try {
-			ResultSet rs = DataBaseFactory.createDataBase(
-					Vendor.ORACLE,
-					DBConstant.USER_NAME, 
-					DBConstant.PASSWORD)
-			.getConnection()
-			.createStatement()
-			.executeQuery(MemberQuery.COUNT.toString());
-			while(rs.next()) {
-				count = rs.getInt("count");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return count;
+		q = new CountQuery();
+		q.play();
+		return q.getNumber();
 	}
 	
 	@Override
 	public List<MemberBean> selectSome(Map<?, ?> param) {
 		List<MemberBean> list = new ArrayList<>();
-		QueryTemplate q = new PstmtQuery();
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("table", Domain.MEMBER);
-		map.put("value1", (String) param.get("beginRow"));
-		map.put("value2", (String) param.get("endRow"));
-		map.put("switch", "list");
-		q.play(map);
+		q = new SearchQuery();
+		q.play(param);
 		for(Object s : q.getList()) {
 			list.add((MemberBean) s);
 		}

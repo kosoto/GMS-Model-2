@@ -36,10 +36,9 @@ var common = (()=>{
 			}
 			);
 			document.getElementById('move_user_login_form')
-        	.addEventListener('click',
-        			function(){ 
+        	.addEventListener('click',function(){ 
         			router.move(
-        					{context : '${context}',
+        					{context : x,
         						domain : 'member',
         						action : 'move',
         						page : 'login'}
@@ -47,10 +46,9 @@ var common = (()=>{
         			}
         	);
         	document.getElementById('move_join_form')
-        	.addEventListener('click',
-        			function(){  
+        	.addEventListener('click',function(){  
         			router.move(
-        					{context :'${context}',
+        					{context : x,
         						domain :'member',
         						action :'move',
         						page :'add'})

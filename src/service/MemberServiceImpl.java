@@ -21,7 +21,6 @@ public class MemberServiceImpl implements MemberService{
 	}
 	@Override
 	public MemberBean retrieve(String id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
@@ -39,8 +38,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 	@Override
 	public boolean login(MemberBean member) {
-		// TODO Auto-generated method stub
-		return false;
+		return MemberDAOImpl.getInstance().login(member);
 	}
 	@Override
 	public boolean existId(String id) {

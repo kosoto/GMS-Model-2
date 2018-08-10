@@ -15,10 +15,6 @@ import enums.Action;
 public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public AdminController() {
-        super();
-    }
-
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Receiver.init(request);
 		switch(Action.valueOf(Receiver.cmd.getAction().toUpperCase())) {

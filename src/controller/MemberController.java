@@ -11,17 +11,13 @@ import enums.Action;
 @WebServlet("/member.do")
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-    public MemberController() {
-        super();
-    }
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Receiver.init(request);
 		switch(Action.valueOf(Receiver.cmd.getAction().toUpperCase())) {
 		case ADD :
 			Carrier.redirect(request, response,
-					"/member.do?action=move&page=user_login_form");
+					"/member.do?action=move&page=login");
 			break;
 		case SEARCH :
 			Carrier.redirect(request, response,

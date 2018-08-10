@@ -12,7 +12,7 @@ public class AddCommand extends Command{
 		setDomain(request.getServletPath()
 				.substring(1, 
 						request.getServletPath().indexOf(".")));
-		//setPage(request.getParameter("page"));
+		setPage(request.getParameter("page"));
 		execute();
 	}
 	
@@ -35,6 +35,6 @@ public class AddCommand extends Command{
 		default:
 			break;
 		}
-		//super.execute();
+		super.execute();
 	}
 }

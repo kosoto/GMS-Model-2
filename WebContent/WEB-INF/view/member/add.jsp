@@ -70,7 +70,7 @@
 				 name:form.name.value,
 				 ssn:form.ssn.value});
 			var arr =[
-				{name:"action", value:"create"},
+				{name:"action", value:"add"},
 				{name:"gender", value:member.getGender()},
 				{name:"age", value:member.getAge()}];
 			for(var i=0;i<arr.length;i++){

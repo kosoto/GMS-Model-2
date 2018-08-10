@@ -29,7 +29,7 @@ public enum MemberQuery {
 			+ "SELECT ROWNUM NO, A.* "
 			+ "FROM ( "
 			+ "SELECT * "
-			+ "FROM MEMBER) A "
+			+ "FROM %s) A "
 			+ "ORDER BY NO DESC) B "
 			+ "WHERE NO BETWEEN ? AND ? ";
 			break;
@@ -39,7 +39,7 @@ public enum MemberQuery {
 			+ "SELECT ROWNUM NO, A.* "
 			+ "FROM ( "
 			+ "SELECT * "
-			+ "FROM MEMBER "
+			+ "FROM %s "
 			+ "WHERE %s LIKE ? ) A "
 			+ "ORDER BY NO DESC) B "
 			+ "WHERE NO BETWEEN ? AND ? ";
