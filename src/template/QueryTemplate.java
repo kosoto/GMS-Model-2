@@ -1,6 +1,5 @@
 package template;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.*;
 import enums.Vendor;
 import factory.DataBaseFactory;
@@ -17,7 +16,7 @@ public abstract class QueryTemplate {
     abstract void startPlay();
     abstract void endPlay();
     
-    public void pStmtInit() {
+    private void pStmtInit() {
     	try {
 			this.pstmt = DataBaseFactory.createDataBase2(map)
 					.getConnection()

@@ -22,14 +22,11 @@ public class LoginCommand extends Command {
 		MemberBean member = new MemberBean();
 		member.setMemberId(request.getParameter("userid"));
 		member.setPass(request.getParameter("pass"));
-		if(MemberServiceImpl.getInstance().login(member)) {
+		MemberBean mem = MemberServiceImpl.getInstance().login(member);
+		if(mem != null) {
 			request.setAttribute("match", "TRUE");
 			request.getSession().setAttribute("user", //세션에 담기
-					MemberServiceImpl.getInstance()
-					.retrieve(
-							"member/mem_id/"+
-							request.getParameter("userid")
-							));
+					mem);
 			
 		}else {
 			request.setAttribute("match", "FALSE");

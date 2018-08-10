@@ -31,8 +31,7 @@ public class MemberController extends HttpServlet {
 			Carrier.redirect(request, response, "");
 			break;
 		case MODIFY :
-			Carrier.redirect(request, response, 
-					"/member.do?action=move&page=my_page");
+			Carrier.forward(request, response);
 			break;
 		case REMOVE :
 			Carrier.redirect(request, response,"");
@@ -45,7 +44,7 @@ public class MemberController extends HttpServlet {
 				Carrier.forward(request, response);
 			}else {
 				Carrier.redirect(request, response, 
-						"/member.do?action=move&page=user_login_form");
+						"/member.do?action=move&page=login");
 			}
 			break;
 		default:break;

@@ -11,6 +11,6 @@ public interface MemberService {
 	public int count();
 	public void modify(Map<?,?>param);
 	public void remove(MemberBean member);
-	public boolean login(MemberBean member);
+	public MemberBean login(MemberBean member);
 	public boolean existId(String id);
 }

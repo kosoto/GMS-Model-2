@@ -12,7 +12,7 @@
 	<div id="footer">주소</div>
 </div>
 <jsp:include page="../member/search.jsp"/>
-<script >
+<script>
 	admin.main('${context}');
 </script>
 </body>

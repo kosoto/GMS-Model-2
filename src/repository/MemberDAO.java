@@ -11,7 +11,7 @@ public interface MemberDAO {
 	public MemberBean selectOne(String word);
 	public int count();
 	public void update(Map<?,?>param);
-	public void deleteMember(MemberBean member);
-	public boolean login(MemberBean member);
+	public void delete(MemberBean member);
+	public MemberBean login(MemberBean member);
 	public boolean existID(String id);
 }

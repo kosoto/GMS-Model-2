@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!doctype html>
-<html lang="en">
-	<jsp:include page="../common/head.jsp"/>
-<body>
-<div>
+<div id="content-box">
 	<form id="updateForm" name="updateForm">
-	
 	<table>
 		<tr>
 			<td rowspan="3"><img src="${img}/home/cat.jpg" /></td>
@@ -53,44 +48,3 @@
 	<input id="updateBtn" type="button" value="수정" />
 	</form>
 </div>
-<script>
-var form = document.getElementById('updateForm');
-var teamid = document.getElementsByName('teamid');
-for(var i in teamid){
-	if(teamid[i].value === '${user.teamId}'.toLowerCase()){
-		document.getElementById(teamid[i].value).checked = true;
-	}
-}
-
-var roll = document.getElementById('roll');
-for(var i=0;i<roll.options.length;i++){
-	if(roll.options[i].value === '${user.roll}'){
-		roll.options[i].setAttribute("selected","selected");
-	}
-}
-
-var newPass = form.newPass.value;
-document.getElementById('updateBtn')
-.addEventListener('click',function(){
-	if((newPass !== "" && newPass !== '${user.pass}') ||
-	   !document.getElementById('${user.teamId}'.toLowerCase()).checked ||
-	   roll.value !== '${user.roll}'){
-		if(newPass === ""){
-			form.newPass.value = '${user.pass}';
-		}
-		var node = document.createElement('input');
-		node.setAttribute('type','hidden');
-		node.setAttribute('name','action');
-		node.setAttribute('value','update');
-		form.appendChild(node);
-		form.action = "${context}/member.do";
-		form.method = "post"; //get은 입력값을 노출, post는 노출x form태그만 post방식이 있음
-		form.submit();
-	}else{
-		alert('수정사항이 없습니다.');
-	}
-	
-});
-</script>
-</body>
-</html>

@@ -1,5 +1,8 @@
 package command;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import domain.MemberBean;
@@ -19,6 +22,13 @@ public class ModifyCommand extends Command {
 		member.setPass(request.getParameter("newPass"));
 		member.setTeamId(request.getParameter("teamid"));
 		member.setRoll(request.getParameter("roll"));
-		//MemberServiceImpl.getInstance().modify(member);
+		MemberBean user = (MemberBean) request.getSession().getAttribute("user");
+		if(!user.getPass().equals(member.getPass())) {
+			
+		}
+		Map<String,Object> map = new HashMap<>();
+		map.put("member", member);
+		MemberServiceImpl.getInstance().modify(map);
+		super.execute();
 	}
 }

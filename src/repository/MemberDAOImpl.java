@@ -19,18 +19,23 @@ public class MemberDAOImpl implements MemberDAO{
 
 	@Override
 	public void update(Map<?,?>param) {
-		
+		q = new UpdateQuery();
+		q.play(param);
 	}
 
 	@Override
-	public void deleteMember(MemberBean member) {
+	public void delete(MemberBean member) {
 	
 	}
 	
 	@Override
-	public boolean login(MemberBean member) {
-		
-		return false;
+	public MemberBean login(MemberBean member) {
+		q = new LoginQuery();
+		HashMap<String, Object>map = new HashMap<>();
+		map.put("memid", member.getMemberId());
+		map.put("pass", member.getPass());
+		q.play(map);
+		return (MemberBean) q.getO();
 	}
 	@Override
 	public String insert(MemberBean member) {

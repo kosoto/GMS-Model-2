@@ -1,23 +1,46 @@
 package template;
 
+import domain.MemberBean;
+import enums.MemberQuery;
+
 public class UpdateQuery extends QueryTemplate{
 
 	@Override
 	void initialize() {
-		// TODO Auto-generated method stub
+		map.put("sql", 
+				String.format(
+					MemberQuery.UPDATE.toString(),
+					"PASSWORD",
+					"TEAM_ID",
+					"ROLL")
+				);
+		System.out.println("업데이트쿼리안에 쿼리 : ");
+		/*"UPDATE MEMBER "
+		  + "SET %s = ?, "
+		  + "SET %s = ?, "
+		  + "SET %s = ? "
+		  + "WHERE MEM_ID LIKE ? ";*/
 		
 	}
 
 	@Override
 	void startPlay() {
-		// TODO Auto-generated method stub
-		
+		try {
+			pstmt.setString(1, ((MemberBean)map.get("member")).getPass());
+			pstmt.setString(2, ((MemberBean)map.get("member")).getTeamId());
+			pstmt.setString(3, ((MemberBean)map.get("member")).getRoll());
+			pstmt.setString(4, ((MemberBean)map.get("member")).getMemberId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	void endPlay() {
-		// TODO Auto-generated method stub
-		
+		try {
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-
 }

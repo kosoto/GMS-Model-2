@@ -29,7 +29,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 	@Override
 	public void modify(Map<?, ?> param) {
-		// TODO Auto-generated method stub
+		MemberDAOImpl.getInstance().update(param);
 		
 	}
 	@Override
@@ -37,7 +37,7 @@ public class MemberServiceImpl implements MemberService{
 		
 	}
 	@Override
-	public boolean login(MemberBean member) {
+	public MemberBean login(MemberBean member) {
 		return MemberDAOImpl.getInstance().login(member);
 	}
 	@Override

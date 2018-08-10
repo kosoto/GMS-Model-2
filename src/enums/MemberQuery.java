@@ -61,6 +61,8 @@ public enum MemberQuery {
 		case UPDATE : 
 			query = "UPDATE MEMBER "
 				  + "SET %s = ?, "
+				  + "%s = ?, "
+				  + "%s = ? "
 				  + "WHERE MEM_ID LIKE ? ";
 			break;
 		case DELETE : 

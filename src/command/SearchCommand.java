@@ -42,14 +42,9 @@ public class SearchCommand extends Command{
 					String.valueOf(page.getBeginRow()),
 					String.valueOf(page.getEndRow())
 					};
-			String a = "a";
-			a.toString();
 			for(int i =0;i<arr1.length;i++) {
 				paramMap.put(arr1[i], arr2[i]);
 			}
-			/*paramMap.put("domain", Domain.MEMBER);
-			paramMap.put("beginRow", String.valueOf(page.getBeginRow()));
-			paramMap.put("endRow", String.valueOf(page.getEndRow()));*/
 			request.setAttribute("page", page);
 			members = MemberServiceImpl.getInstance().search(paramMap);
 		}

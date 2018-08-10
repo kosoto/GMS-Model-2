@@ -8,6 +8,158 @@ var router = ( ()=>{
                      +"&page="+x.page;
                 }};//closure, key(String) & value(object)의 map구조, scalar 문법
      })();  //이때는 ;이 빠지면 에러
+
+var members = (()=>{
+	return {
+		main : x=>{
+			alert("pagename : "+x.pagename);
+			switch(x.pagename){
+			case "add" : 
+				document.getElementById('joinBth')
+				.addEventListener('click',function(){
+					var y = (service.nullChecker(
+							{id:document.joinForm.userid.value,
+							 pass:document.joinForm.pass.value,
+							 name:document.joinForm.name.value,
+							 ssn:document.joinForm.ssn.value}
+							)
+					);
+					if(y.checker){
+						var form = document.getElementById('joinForm');
+						form.action = x.context+"/member.do";
+						form.method = "POST"; //get은 입력값을 노출, post는 노출x form태그만 post방식이 있음
+						member.join({
+							 id:form.userid.value,
+							 pass:form.pass.value,
+							 name:form.name.value,
+							 ssn:form.ssn.value});
+						var arr =[
+							{name:"action", value:"add"},
+							{name:"gender", value:member.getGender()},
+							{name:"age", value:member.getAge()}];
+						for(var i=0;i<arr.length;i++){
+							var node = document.createElement('input');
+							node.setAttribute('type','hidden');
+							node.setAttribute('name',arr[i].name);
+							node.setAttribute('value',arr[i].value);
+							form.appendChild(node);
+						} 
+						form.submit();
+					}else{
+						alert(y.text);
+					}
+				});
+				break;
+			case 'login':
+				document.getElementById('login_btn')
+				.addEventListener('click',function(){
+					var y = service.nullChecker(
+							{id:document.loginForm.userid.value, //여기서 loginForm은 form의 name
+							 pass:document.loginForm.pass.value}
+							);
+					if(y.checker){
+						var form = document.getElementById('loginForm'); //여기서 loginForm 은 form의 id
+						form.action = x.context+"/member.do";
+						form.method = "post"; //get은 입력값을 노출, post는 노출x form태그만 post방식이 있음
+						form.submit();
+					}else{
+						alert(y.text);
+					}
+				});
+				break;
+			case 'modify':
+				alert('modify안 user : '+x.user);
+				alert("팀아이디"+(x.user).getAttribute('teamId'));
+				var form = document.getElementById('updateForm');
+				var teamid = document.getElementsByName('teamid');
+				for(var i in teamid){
+					if(teamid[i].value === x.user.teamId.toLowerCase()){
+						document.getElementById(teamid[i].value).checked = true;
+					}
+				}
+
+				var roll = document.getElementById('roll');
+				for(var i=0;i<roll.options.length;i++){
+					if(roll.options[i].value === x.user.roll){
+						roll.options[i].setAttribute("selected","selected");
+					}
+				}
+
+				var newPass = form.newPass.value;
+				document.getElementById('updateBtn')
+				.addEventListener('click',function(){
+					if((newPass !== "" && newPass !== x.user.pass) ||
+					   !document.getElementById(x.user.teamId.toLowerCase()).checked ||
+					   roll.value !== x.user.roll){
+						if(newPass === ""){
+							form.newPass.value = x.user.pass;
+						}
+						var node = document.createElement('input');
+						node.setAttribute('type','hidden');
+						node.setAttribute('name','action');
+						node.setAttribute('value','modify');
+						form.appendChild(node);
+						form.action = x.context+"/member.do";
+						form.method = "post"; //get은 입력값을 노출, post는 노출x form태그만 post방식이 있음
+						form.submit();
+					}else{
+						alert('수정사항이 없습니다.');
+					}
+					
+				});
+				break;
+			case 'remove':
+				document.getElementById('deleteBtn')
+				.addEventListener('click',function(){
+				var form = document.getElementById('deleteForm');
+				if(x.user.pass === form.password.value){
+					form.action = x.context+"/member.do";
+					form.method = "post";
+					var node = document.createElement('input'); //태크 생성하기
+					node.setAttribute('type','hidden');
+					node.setAttribute('name','action');
+					node.setAttribute('value','remove'); //OOP 코딩
+					form.appendChild(node); //node를 form안에 넣기 위한 코드
+					form.submit();
+				}else{
+					alert('비밀번호가 다릅니다.');
+				}
+				})
+				break;
+			default :
+				document.getElementById('moveUpdateForm')
+				.addEventListener('click',
+						function(){  //콜백 함수, 뒤따라 연이어 호출되는 함수
+							router.move(
+									{context : x.context,
+									domain : 'member',
+									action : 'move',
+									page : 'modify'
+										}
+									)
+						}
+				);
+
+				document.getElementById('moveDeleteForm')
+				.addEventListener('click',
+						function(){  //콜백 함수, 뒤따라 연이어 호출되는 함수
+							router.move(
+								{context : x.context,
+								domain : 'member',
+								action : 'move',
+								page : 'remove'
+									}
+								)
+						}
+				);
+				break;
+			}
+			
+			
+		}//main end
+	}//return end
+})();
+
 var common = (()=>{
 	return {
 		main : x=>{
@@ -169,7 +321,6 @@ var service = (()=>{
 			}else{
 				flag = true;
 			}
-			alert(flag);
 			return flag;
 		}
 	};
