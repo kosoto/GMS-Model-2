@@ -215,25 +215,21 @@ var admin = (()=>{
 					if(document.getElementById('word').value!==""){
 						var domain = "";
 						var action = "";
-						var page = "";
 						switch(document.getElementById('option').value){
 						case 'mem_id' :
 							domain = "member";
 							action = "retrieve";
-							page = "main"
 							break;
 						case 'name' :		
 						case 'team_id' :
 							domain = "admin"
 							action = "search";
-							page = "main";
 							break;
 						default : break;
 						}
 					 location.href = x
 					+"/"+domain+".do?"
 					+"action="+action
-					+"&page="+page
 					+"&option="
 					+document.getElementById('option').value
 					+"&word="
@@ -248,10 +244,10 @@ var admin = (()=>{
 			}); //'searchBtn' 끝
 			
 			document.getElementById('listBtn')
-			.addEventListener('click',()=>{
+			.addEventListener('click',function(){
 				location.href =
-					x+"/admin.do?action=search&page=main&"
-					+"option=none"		
+					x+"/admin.do?action=search"
+					+"&option=none"		
 			})
 			
 			document.getElementById('contentBoxMeta').style.width = '80%';

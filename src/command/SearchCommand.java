@@ -28,7 +28,8 @@ public class SearchCommand extends Command{
 		if(!(request.getParameter("option")==null)) {
 			System.out.println("서치커맨드 if 안 option : "+request.getParameter("option"));
 			if(request.getParameter("option").equals("none")) {
-				request.getSession().invalidate();
+				request.getSession().removeAttribute("option");
+				request.getSession().removeAttribute("word");
 				System.out.println("option = none : "+request.getSession().getAttribute("option"));
 				
 			}else {
@@ -37,7 +38,7 @@ public class SearchCommand extends Command{
 			}
 		}
 		
-		if(!(request.getSession().getAttribute("option")==null)) {
+		if(!(request.getSession().getAttribute("option")==null) && !request.getSession().getAttribute("option").equals("none")) {
 			//검색리스트 코딩영역
 			
 			String word = 

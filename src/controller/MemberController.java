@@ -21,6 +21,7 @@ import org.apache.tomcat.util.http.fileupload.FileItemFactory;
 import org.apache.tomcat.util.http.fileupload.RequestContext;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletRequestContext;
 
 import command.Carrier;
 import command.Receiver;
@@ -67,7 +68,7 @@ public class MemberController extends HttpServlet {
 			try {
 				System.out.println("3. try 내부로 진입");
 				File file = null;
-				items = upload.parseRequest((RequestContext) request);
+				items = upload.parseRequest(new ServletRequestContext(request));
 				System.out.println("4. items 생성");
 				Iterator<FileItem>iter = items.iterator();
 				while(iter.hasNext()) {
