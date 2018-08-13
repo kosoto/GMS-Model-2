@@ -7,8 +7,6 @@ public class Commander {
 	public static Command order(
 			HttpServletRequest request) {
 		Command cmd = null;
-		System.out.println("commandar action : "+request.getParameter("action")
-				.toUpperCase());
 		switch(Action.valueOf(request.getParameter("action")
 				.toUpperCase())) {
 		case ADD : 
