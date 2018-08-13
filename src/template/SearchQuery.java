@@ -4,7 +4,6 @@ package template;
 import java.sql.ResultSet;
 import domain.MemberBean;
 import enums.MemberQuery;
-import factory.DataBaseFactory;
 
 public class SearchQuery extends QueryTemplate{
 

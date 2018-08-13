@@ -5,6 +5,6 @@ public enum Action {
 	SEARCH,RETRIEVE,COUNT,
 	MODIFY,
 	REMOVE,
-	LOGIN,MOVE;
+	LOGIN,MOVE, FILEUPLOAD;
 	
 }

@@ -11,6 +11,7 @@
 		</select>
 		<input type="text" id="word" placeholder="검색어 입력"/>
 		<input type="button" id="searchBtn" value="검색"/>
+		<input type="button" id="listBtn" value="전체리스트보기"/>
 	</div>
 	<table id="contentBoxTab">
 		<tr id="contentBoxMeta">

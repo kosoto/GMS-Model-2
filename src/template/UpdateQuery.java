@@ -14,13 +14,6 @@ public class UpdateQuery extends QueryTemplate{
 					"TEAM_ID",
 					"ROLL")
 				);
-		System.out.println("업데이트쿼리안에 쿼리 : ");
-		/*"UPDATE MEMBER "
-		  + "SET %s = ?, "
-		  + "SET %s = ?, "
-		  + "SET %s = ? "
-		  + "WHERE MEM_ID LIKE ? ";*/
-		
 	}
 
 	@Override

@@ -13,8 +13,13 @@ public class MemberDAOImpl implements MemberDAO{
 	
 	@Override
 	public MemberBean selectOne(String word) {
-		
-		return null;
+		q = new RetrieveQuery();
+		Map<String,Object> map = new HashMap<>();
+		map.put("table", word.split("/")[0]);
+		map.put("column", word.split("/")[1].toUpperCase());
+		map.put("value", word.split("/")[2]);
+		q.play(map);
+		return (MemberBean) q.getO();
 	}
 
 	@Override
@@ -67,7 +72,15 @@ public class MemberDAOImpl implements MemberDAO{
 		q.play();
 		return q.getNumber();
 	}
-	
+	@Override
+	public int count(String word) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("column", word.split("/")[1].toUpperCase());
+		map.put("value", word.split("/")[2]);
+		q = new CountQuery();
+		q.play(map);
+		return q.getNumber();
+	}
 	@Override
 	public List<MemberBean> selectSome(Map<?, ?> param) {
 		List<MemberBean> list = new ArrayList<>();
@@ -78,6 +91,7 @@ public class MemberDAOImpl implements MemberDAO{
 		}
 		return list;
 	}
+	
 
 }
 

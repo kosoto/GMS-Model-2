@@ -20,12 +20,16 @@ public class MemberServiceImpl implements MemberService{
 		return MemberDAOImpl.getInstance().selectSome(param);
 	}
 	@Override
-	public MemberBean retrieve(String id) {
-		return null;
+	public MemberBean retrieve(String word) {
+		return MemberDAOImpl.getInstance().selectOne(word);
 	}
 	@Override
 	public int count() {
 		return MemberDAOImpl.getInstance().count();
+	}
+	@Override
+	public int count(String word) {
+		return MemberDAOImpl.getInstance().count(word);
 	}
 	@Override
 	public void modify(Map<?, ?> param) {
@@ -45,6 +49,6 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+	
 
 }

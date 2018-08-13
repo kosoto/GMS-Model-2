@@ -7,6 +7,8 @@ public class Commander {
 	public static Command order(
 			HttpServletRequest request) {
 		Command cmd = null;
+		System.out.println("commandar action : "+request.getParameter("action")
+				.toUpperCase());
 		switch(Action.valueOf(request.getParameter("action")
 				.toUpperCase())) {
 		case ADD : 
@@ -32,6 +34,9 @@ public class Commander {
 			break;
 		case LOGIN: 
 			cmd = new LoginCommand(request);
+			break;
+		case FILEUPLOAD: 
+			cmd = new FileCommand(request);
 			break;
 		default:
 			break;

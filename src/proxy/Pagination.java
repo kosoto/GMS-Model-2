@@ -8,10 +8,14 @@ public class Pagination implements Proxy{
 	
 	@Override
 	public void carryOut(Object o) {
-		this.pageNum = (int) o; 
+		this.pageNum = Integer.parseInt(((String) o).split("/")[0]); 
 		this.pageSize = 5; 
 		this.blockSize = 5;
-		this.count = MemberServiceImpl.getInstance().count();
+		if(((String)o).split("/").length>1) {
+			this.count = MemberServiceImpl.getInstance().count((String) o);
+		}else {
+			this.count = MemberServiceImpl.getInstance().count();
+		}
 		this.beginPage = Math.floorDiv(pageNum-1, pageSize)*pageSize+1;
 		this.endPage = (count>(beginPage+(blockSize-1))*pageSize)?
 				beginPage+(blockSize-1):(int)(Math.ceil(count/(double)pageSize));

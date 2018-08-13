@@ -8,7 +8,7 @@ public enum MemberQuery {
 	UPDATE,
 	DELETE,  
 	LOGIN,
-	EXIST_ID;
+	EXIST_ID, SEARCHED_COUNT;
 	
 	@Override
 	public String toString() {	
@@ -45,18 +45,20 @@ public enum MemberQuery {
 			+ "WHERE NO BETWEEN ? AND ? ";
 			break;
 		case RETRIEVE : 
-			query = "SELECT * FROM MEMBER "
-					+ "WHERE MEM_ID LIKE '%s'";
 			query = "SELECT "
 					//+ColumnFinder.find(Domain.MEMBER)
 					+"* "
 					+"FROM MEMBER "
-					+"WHERE MEM_ID "
+					+"WHERE %s "
 					+"LIKE ? ";
 				
 			break;
 		case COUNT : 
-			query = " SELECT COUNT(*) AS count FROM MEMBER";
+			query = "SELECT COUNT(*) AS count FROM MEMBER";
+			break;
+		case SEARCHED_COUNT :
+			query = "SELECT COUNT(*) AS count FROM MEMBER "
+					+ "WHERE %s LIKE ? "; 
 			break;
 		case UPDATE : 
 			query = "UPDATE MEMBER "

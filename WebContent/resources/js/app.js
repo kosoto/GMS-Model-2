@@ -12,7 +12,6 @@ var router = ( ()=>{
 var members = (()=>{
 	return {
 		main : x=>{
-			alert("pagename : "+x.pagename);
 			switch(x.pagename){
 			case "add" : 
 				document.getElementById('joinBth')
@@ -68,8 +67,6 @@ var members = (()=>{
 				});
 				break;
 			case 'modify':
-				alert('modify안 user : '+x.user);
-				alert("팀아이디"+(x.user).getAttribute('teamId'));
 				var form = document.getElementById('updateForm');
 				var teamid = document.getElementsByName('teamid');
 				for(var i in teamid){
@@ -216,22 +213,25 @@ var admin = (()=>{
 			.addEventListener('click',function(){
 				if(document.getElementById('option').value !== 'none'){
 					if(document.getElementById('word').value!==""){
+						var domain = "";
 						var action = "";
 						var page = "";
 						switch(document.getElementById('option').value){
 						case 'mem_id' :
+							domain = "member";
 							action = "retrieve";
-							page = "memberDetail"
+							page = "main"
 							break;
 						case 'name' :		
 						case 'team_id' :
+							domain = "admin"
 							action = "search";
 							page = "main";
 							break;
 						default : break;
 						}
 					 location.href = x
-					+"/admin.do?"
+					+"/"+domain+".do?"
 					+"action="+action
 					+"&page="+page
 					+"&option="
@@ -246,13 +246,22 @@ var admin = (()=>{
 					 alert('검색조건을 선택하세요');
 				}
 			}); //'searchBtn' 끝
+			
+			document.getElementById('listBtn')
+			.addEventListener('click',()=>{
+				location.href =
+					x+"/admin.do?action=search&page=main&"
+					+"option=none"		
+			})
+			
 			document.getElementById('contentBoxMeta').style.width = '80%';
 			document.getElementById('contentBoxMeta').className = 'bgColorisYellow';
+			
 			for(var i of document.querySelectorAll('.username')){
                  service.addClass(i,'cursor fontColorBlue');
                  i.addEventListener('click',function(){
                        location.href = x
-                            +"/admin.do?action=retrieve&page=memberDetail&option=mem_id&table=member&word="
+                            +"/member.do?action=retrieve&page=main&option=mem_id&table=member&word="
                            +this.getAttribute('id');//콜백함수에서의 this는 이 함수를 호출한 객체
                  });
             };
@@ -269,7 +278,7 @@ var admin = (()=>{
         	
 		}//main method 끝
 	}
-}
+}//admin function 끝
 )();
 var service = (()=>{
 	return {
