@@ -23,7 +23,6 @@ public class SearchCommand extends Command{
 		PageProxy pxy = new PageProxy();
 		Pagination page = null;
 		String ar1,ar2;
-		int length = 0;
 		
 		if(!(request.getParameter("option")==null)) {
 			if(request.getParameter("option").equals("none")) {
@@ -49,7 +48,6 @@ public class SearchCommand extends Command{
 				+String.valueOf(page.getEndRow())+"/"
 				+(String) request.getSession().getAttribute("option")+"/"
 				+(String) request.getSession().getAttribute("word");
-			length = ar1.split("/").length;
 		}else {
 			pxy.carryOut((pageNum==null)?
 					"1":
@@ -60,11 +58,10 @@ public class SearchCommand extends Command{
 				Domain.MEMBER.toString()+"/"
 				+String.valueOf(page.getBeginRow())+"/"
 				+String.valueOf(page.getEndRow());
-			length = ar1.split("/").length;
 		}
-		String[] arr1 = ar1.split("/");
-		String[] arr2 = ar2.split("/");
-		for(int i=0;i<length;i++) {
+		String[] arr1 = ar1.split("/"), 
+				 arr2 = ar2.split("/");
+		for(int i=0;i<arr1.length;i++) {
 			paramMap.put(arr1[i], arr2[i]);
 		}
 		request.setAttribute("page", page);
