@@ -120,7 +120,15 @@ var members = (()=>{
 				document.getElementById('deleteBtn')
 				.addEventListener('click',function(){
 				var form = document.getElementById('deleteForm');
-				if(x.user.pass === form.password.value){
+				form.action = x.context+"/member.do";
+				form.method = "post";
+				var node = document.createElement('input'); //태크 생성하기
+				node.setAttribute('type','hidden');
+				node.setAttribute('name','action');
+				node.setAttribute('value','remove'); //OOP 코딩
+				form.appendChild(node); //node를 form안에 넣기 위한 코드
+				form.submit();
+			/*	if(x.user.pass === form.password.value){
 					form.action = x.context+"/member.do";
 					form.method = "post";
 					var node = document.createElement('input'); //태크 생성하기
@@ -131,7 +139,7 @@ var members = (()=>{
 					form.submit();
 				}else{
 					alert('비밀번호가 다릅니다.');
-				}
+				}*/
 				})
 				break;
 			default :

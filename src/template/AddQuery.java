@@ -31,7 +31,6 @@ public class AddQuery extends QueryTemplate{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 	@Override

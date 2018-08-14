@@ -35,7 +35,11 @@ public class MemberController extends HttpServlet {
 			Carrier.forward(request, response);
 			break;
 		case REMOVE :
-			Carrier.redirect(request, response,"");
+			if(request.getAttribute("match") != null) {
+				Carrier.redirect(request, response,"");
+			}else {
+				Carrier.forward(request, response);
+			}
 			break;
 		case FILEUPLOAD : 
 			Carrier.redirect(request, response, "/member.do?action=retrieve&page=main");
