@@ -2,7 +2,9 @@
 <div id="content-box">
 	<table>
 		<tr>
-			<td rowspan="3"><img src="${img}/home/cat.jpg" /></td>
+			<td rowspan="3">
+				<img id="profile" src="${img}${profile}" />
+			</td>
 			<td>아이디</td>
 			<td colspan="2">${user.memberId}</td>
 		</tr>

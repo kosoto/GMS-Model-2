@@ -2,6 +2,7 @@ package command;
 
 import javax.servlet.http.HttpServletRequest;
 import domain.MemberBean;
+import service.ImageServiceImpl;
 import service.MemberServiceImpl;
 
 public class LoginCommand extends Command {
@@ -27,6 +28,10 @@ public class LoginCommand extends Command {
 			request.setAttribute("match", "TRUE");
 			request.getSession().setAttribute("user", //세션에 담기
 					mem);
+			request.getSession().setAttribute("profile", 
+					"/upload/"+ImageServiceImpl.getInstance().retrieve(
+					((MemberBean)(request.getSession().getAttribute("user"))).getMemberId()
+					));
 			
 		}else {
 			request.setAttribute("match", "FALSE");

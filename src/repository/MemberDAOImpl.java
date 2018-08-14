@@ -15,7 +15,7 @@ public class MemberDAOImpl implements MemberDAO{
 	public MemberBean selectOne(String word) {
 		q = new RetrieveQuery();
 		Map<String,Object> map = new HashMap<>();
-		map.put("table", word.split("/")[0]);
+		map.put("table", Domain.MEMBER);
 		map.put("column", word.split("/")[1].toUpperCase());
 		map.put("value", word.split("/")[2]);
 		q.play(map);
@@ -48,7 +48,6 @@ public class MemberDAOImpl implements MemberDAO{
 		q = new AddQuery();
 		HashMap<String, Object>map = new HashMap<>();
 		map.put("table", Domain.MEMBER);
-		map.put("switch","insert");
 		map.put("value1", member.getMemberId());
 		map.put("value2", member.getName());
 		map.put("value4", member.getPass());

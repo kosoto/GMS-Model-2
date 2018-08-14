@@ -1,6 +1,9 @@
 package command;
 
 import javax.servlet.http.HttpServletRequest;
+
+import domain.MemberBean;
+import service.ImageServiceImpl;
 import service.MemberServiceImpl;
 
 public class RetrieveCommand extends Command{
@@ -15,15 +18,23 @@ public class RetrieveCommand extends Command{
 	}
 	@Override
 	public void execute() {
-		request.setAttribute("user", 
-				MemberServiceImpl
-				.getInstance()
-				.retrieve(
-						request.getParameter("table")+"/"+
-						request.getParameter("option")+"/"+
-						request.getParameter("word")
-						)
+		if(request.getParameter("table") != null) {
+			request.getSession().setAttribute("user", 
+					MemberServiceImpl
+					.getInstance()
+					.retrieve(
+							request.getParameter("table")+"/"+
+							request.getParameter("option")+"/"+
+							request.getParameter("word")
+							)
+					);
+		}
+		
+		String img = ImageServiceImpl.getInstance().retrieve(
+				((MemberBean)(request.getSession().getAttribute("user"))).getMemberId()
 				);
+		System.out.println("DB에서 찾은 이미지 파일 : "+img);
+		request.getSession().setAttribute("profile", "/upload/"+img);
 		super.execute();
 	}
 }

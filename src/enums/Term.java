@@ -1,7 +1,8 @@
 package enums;
 
 public enum Term {
-	WEBPATH, MAIN, RESOURCES,CONTEXT;
+	WEBPATH, MAIN, RESOURCES, CONTEXT,
+	UPLOAD_PATH;
 	@Override
 	public String toString() {
 		String res = "";
@@ -17,6 +18,9 @@ public enum Term {
 			break;
 		case RESOURCES: 
 			res = "/resources/";
+			break;
+		case UPLOAD_PATH : 
+			res = "C:/Users/1027/eclipse/jee-oxygen/eclipse/Workspace2/GMS-Model2/WebContent/resources/img/upload/";
 			break;
 		default :break;
 		}

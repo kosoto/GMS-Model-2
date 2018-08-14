@@ -67,8 +67,9 @@ var members = (()=>{
 				});
 				break;
 			case 'modify':
+				alert('modify 진입');
 				var form = document.getElementById('updateForm');
-				var teamid = document.getElementsByName('teamid');
+				/*var teamid = document.getElementsByName('teamid');
 				for(var i in teamid){
 					if(teamid[i].value === x.user.teamId.toLowerCase()){
 						document.getElementById(teamid[i].value).checked = true;
@@ -80,12 +81,22 @@ var members = (()=>{
 					if(roll.options[i].value === x.user.roll){
 						roll.options[i].setAttribute("selected","selected");
 					}
-				}
+				}*/
 
-				var newPass = form.newPass.value;
+				//var newPass = form.newPass.value;
+				
 				document.getElementById('updateBtn')
 				.addEventListener('click',function(){
-					if((newPass !== "" && newPass !== x.user.pass) ||
+					alert('수정 버튼 누름');
+					var node = document.createElement('input');
+					node.setAttribute('type','hidden');
+					node.setAttribute('name','action');
+					node.setAttribute('value','modify');
+					form.appendChild(node);
+					form.action = x.context+"/member.do";
+					form.method = "post"; //get은 입력값을 노출, post는 노출x form태그만 post방식이 있음
+					form.submit();
+					/*if((newPass !== "" && newPass !== x.user.pass) ||
 					   !document.getElementById(x.user.teamId.toLowerCase()).checked ||
 					   roll.value !== x.user.roll){
 						if(newPass === ""){
@@ -101,7 +112,7 @@ var members = (()=>{
 						form.submit();
 					}else{
 						alert('수정사항이 없습니다.');
-					}
+					}*/
 					
 				});
 				break;
@@ -152,6 +163,10 @@ var members = (()=>{
 				break;
 			}
 			
+			document.getElementById('profile')
+			.addEventListener('click',function(){
+				service.addClass(this, 'width-200 height-150');
+			})
 			
 		}//main end
 	}//return end
@@ -257,7 +272,7 @@ var admin = (()=>{
                  service.addClass(i,'cursor fontColorBlue');
                  i.addEventListener('click',function(){
                        location.href = x
-                            +"/member.do?action=retrieve&page=main&option=mem_id&table=member&word="
+                            +"/member.do?action=retrieve&option=mem_id&table=member&word="
                            +this.getAttribute('id');//콜백함수에서의 this는 이 함수를 호출한 객체
                  });
             };

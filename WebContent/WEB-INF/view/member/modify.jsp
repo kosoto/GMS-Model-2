@@ -4,7 +4,7 @@
 	<table>
 		<tr>
 			<td rowspan="3">
-				<img src="${img}/home/cat.jpg" />
+				<img id="profile" src="${img}${profile}" />
 			</td>
 			
 			<td>아이디</td>
@@ -51,9 +51,7 @@
 	<input id="updateBtn" type="button" value="수정" />
 	</form>
 </div>
-<form method="POST" enctype="multipart/form-data" action="${context}/member.do?action=fileupload&page=retirieve">
+<form method="POST" enctype="multipart/form-data" action="${context}/member.do?action=fileupload&page=retrieve&userid=${user.memberId}">
   파일 업로드: <input type="file" name="upfile"><br/>
-  <!-- <input type="hidden" name="action" value="fileupload"/>
-  <input type="hidden" name="page" value="retirieve"/> -->
   <input type="submit" value="파일업로드">
-</form>
+</form> 

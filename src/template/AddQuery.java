@@ -1,10 +1,24 @@
 package template;
+import enums.Domain;
+import enums.ImageQuery;
 import enums.MemberQuery;
 public class AddQuery extends QueryTemplate{
 
 	@Override
 	void initialize() {
-		map.put("sql",MemberQuery.INSERT.toString());
+		switch((Domain) map.get("table")) {
+		case MEMBER: 
+			map.put("sql",MemberQuery.INSERT.toString());
+			break;
+		case IMAGE: 
+			map.put("sql", ImageQuery.INSERT.toString());
+			break;
+		
+		default:
+			break;
+		
+		}
+		
 		
 	}
 
