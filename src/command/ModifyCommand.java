@@ -19,20 +19,24 @@ public class ModifyCommand extends Command {
 	
 	@Override
 	public void execute() {
+		super.execute();
 		MemberBean member = 
 				(MemberBean) request.getSession().getAttribute("user");
+		
 		if(!request.getParameter("newPass").equals("")) {
 			member.setPass(request.getParameter("newPass"));
 		}
-		System.out.println("수정커맨드 팀아이디 : "+request.getParameter("teamid"));
-		System.out.println("수정커맨드 역활 : "+request.getParameter("roll"));
-		if(request.getParameter("teamid") != null) {
-			member.setTeamId(request.getParameter("teamid"));
-		}
+		
+		member.setTeamId(
+				((request.getParameter("teamid") != null)?
+						request.getParameter("teamid")
+						:((MemberBean)request.getSession().getAttribute("user")).getTeamId())
+				.toUpperCase()
+		);
+		
 		member.setRoll(request.getParameter("roll"));
 		Map<String,Object> map = new HashMap<>();
 		map.put("member", member);
 		MemberServiceImpl.getInstance().modify(map);
-		super.execute();
 	}
 }

@@ -38,7 +38,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 	@Override
 	public void remove(MemberBean member) {
-		
+		MemberDAOImpl.getInstance().delete(member);
 	}
 	@Override
 	public MemberBean login(MemberBean member) {
@@ -46,7 +46,6 @@ public class MemberServiceImpl implements MemberService{
 	}
 	@Override
 	public boolean existId(String id) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	

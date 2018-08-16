@@ -1,6 +1,5 @@
 package proxy;
 import lombok.Data;
-import service.MemberServiceImpl;
 @Data
 public class Pagination implements Proxy{
 	int pageNum,count,pageSize,blockSize,beginPage,endPage,beginRow,endRow,prevBlock,nextBlock;
@@ -11,11 +10,7 @@ public class Pagination implements Proxy{
 		pageNum = Integer.parseInt(((String) o).split("/")[0]); 
 		pageSize = 5; 
 		blockSize = 5;
-		if(((String)o).split("/").length>1) {
-			count = MemberServiceImpl.getInstance().count((String) o);
-		}else {
-			count = MemberServiceImpl.getInstance().count();
-		}
+		count = Integer.parseInt(((String) o).split("/")[1]);
 		beginPage = Math.floorDiv(pageNum-1, pageSize)*pageSize+1;
 		endPage = (count>(beginPage+(blockSize-1))*pageSize)?
 				beginPage+(blockSize-1):(int)(Math.ceil(count/(double)pageSize));

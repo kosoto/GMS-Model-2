@@ -15,8 +15,6 @@ public class RemoveCommand extends Command {
 	}
 	@Override
 	public void execute() {
-		System.out.println(request.getParameter("password"));
-		System.out.println(((MemberBean)(request.getSession().getAttribute("user"))).getPass());
 		if(request.getParameter("password").equals(((MemberBean)(request.getSession().getAttribute("user"))).getPass())) {
 			MemberServiceImpl.getInstance()
 			.remove((MemberBean) request.getSession().getAttribute("user"));

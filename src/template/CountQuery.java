@@ -7,17 +7,12 @@ public class CountQuery extends QueryTemplate{
 
 	@Override
 	void initialize() {
-		if(map.get("column")!=null) {
-			map.put("sql", 
-					String.format(
-							MemberQuery.SEARCHED_COUNT.toString(),
-							map.get("column").toString()
-							)
-					
-					);
-		}else {
-			map.put("sql", MemberQuery.COUNT.toString());
-		}
+		map.put("sql", 
+				(map.get("column")!=null)?
+				String.format(
+				MemberQuery.SEARCHED_COUNT.toString(),
+				map.get("column").toString())
+				:MemberQuery.COUNT.toString());
 	}
 
 	@Override
@@ -34,7 +29,6 @@ public class CountQuery extends QueryTemplate{
 
 	@Override
 	void endPlay() {
-		number = 0;
 		try {
 			ResultSet rs = pstmt.executeQuery();
 			if(rs.next()) {

@@ -4,7 +4,6 @@
 			비밀번호 재입력 <br>
 			<input type="password" name="password" 
 			id="password"/> <!-- DOM객체의 property -->
-			<!-- <input type="hidden" name="action" value="delete"/> -->
 			<input type="button" id="deleteBtn" value="회원탈퇴"/>
 		</form>
 	</div>

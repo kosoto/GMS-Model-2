@@ -1,7 +1,5 @@
 package enums;
 
-import template.ColumnFinder;
-
 public enum MemberQuery {
 	INSERT,
 	LIST,SEARCH,RETRIEVE,COUNT,

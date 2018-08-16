@@ -67,7 +67,6 @@ var members = (()=>{
 				});
 				break;
 			case 'modify':
-				alert('modify 진입');
 				var form = document.getElementById('updateForm');
 				/*var teamid = document.getElementsByName('teamid');
 				for(var i in teamid){
@@ -87,7 +86,6 @@ var members = (()=>{
 				
 				document.getElementById('updateBtn')
 				.addEventListener('click',function(){
-					alert('수정 버튼 누름');
 					var node = document.createElement('input');
 					node.setAttribute('type','hidden');
 					node.setAttribute('name','action');
@@ -117,8 +115,10 @@ var members = (()=>{
 				});
 				break;
 			case 'remove':
+				alert('remove 페이지 진입');
 				document.getElementById('deleteBtn')
 				.addEventListener('click',function(){
+				alert('삭제 버튼 누름');
 				var form = document.getElementById('deleteForm');
 				form.action = x.context+"/member.do";
 				form.method = "post";
@@ -185,12 +185,14 @@ var common = (()=>{
 		main : x=>{
 			document.getElementById('moveAdmin')
 			.addEventListener('click',function(){  
-				router.move(
+				 location.href =
+                     x+"/admin.do?action=search";
+				/*router.move(
 						{context : x,
 						domain : 'admin',
 						action : 'search',
 						page : 'main'}
-						)
+						)*/
 				/*var isAdmin = confirm('관리자입니까?'); //window의 method,BOM객체
 				if(isAdmin){
 					var password = prompt('관리자 비번을 입력바랍니다.');

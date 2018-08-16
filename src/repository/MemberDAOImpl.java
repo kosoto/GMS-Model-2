@@ -1,12 +1,8 @@
 package repository;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.*;
 import domain.*;
 import enums.*;
-import factory.DataBaseFactory;
-import pool.DBConstant;
 import template.*;
 
 public class MemberDAOImpl implements MemberDAO{
@@ -83,8 +79,8 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public int count(String word) {
 		Map<String,Object> map = new HashMap<>();
-		map.put("column", word.split("/")[1].toUpperCase());
-		map.put("value", word.split("/")[2]);
+		map.put("column", word.split("/")[0].toUpperCase());
+		map.put("value", word.split("/")[1]);
 		q = new CountQuery();
 		q.play(map);
 		return q.getNumber();
