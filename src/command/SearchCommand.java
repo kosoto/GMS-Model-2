@@ -18,21 +18,17 @@ public class SearchCommand extends Command{
 	@Override
 	public void execute() {
 		super.execute();
-		if(request.getParameter("option")!=null) {
-			request.setAttribute("option", request.getParameter("option"));
-			request.setAttribute("word", request.getParameter("word"));
-		}else {
-			request.setAttribute("option", "none");
-			request.setAttribute("word", "none");
-		}
-		
+		boolean nullCheck = request.getParameter("option")!=null;
+		request.setAttribute("option", (nullCheck)?request.getParameter("option"):"none");
+		request.setAttribute("word", (nullCheck)?request.getParameter("word"):"none");
+		boolean noneCheck = request.getAttribute("option").equals("none");
 		PageProxy pxy = new PageProxy();
 		String pageNum = request.getParameter("pageNum"); 
 		pxy.carryOut(
 				((pageNum==null)?
 						"1/"
 						:pageNum+"/")
-				+((request.getAttribute("option").equals("none"))?
+				+((noneCheck)?
 						MemberServiceImpl.getInstance().count()
 						:MemberServiceImpl.getInstance().count(
 									request.getAttribute("option")+"/"
@@ -41,21 +37,20 @@ public class SearchCommand extends Command{
 		);
 		
 		Pagination page = pxy.getPagination();
-		boolean flag = !(((String)request.getAttribute("option")).equals("none"));
 		String[] 
 			keys = ("domain/beginRow/endRow"
-					+((flag)?
-					  "/column/value"
-					  :"")
+					+((noneCheck)?
+					  ""
+					  :"/column/value")
 					)
 				.split("/"), 
 			 values = (Domain.MEMBER.toString()+"/"
 						+String.valueOf(page.getBeginRow())+"/"
 						+String.valueOf(page.getEndRow())
-						+((flag)?
-						"/"+((String) request.getAttribute("option"))
-						+"/"+((String) request.getAttribute("word"))
-						:"")
+						+((noneCheck)?
+						""
+						:"/"+((String) request.getAttribute("option"))
+						+"/"+((String) request.getAttribute("word")))
 					)
 			 	.split("/");
 		

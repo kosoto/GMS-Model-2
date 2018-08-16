@@ -24,7 +24,6 @@
 				option : '${option}',
 				word : '${word}'
 			}
-			
 			);
 </script>
 </body>

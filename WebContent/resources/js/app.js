@@ -276,7 +276,8 @@ var admin = (()=>{
 			.addEventListener('click',function(){
 				location.href =
 					x.context+"/admin.do?action=search"
-					+"&option=none"		
+					//+"&option=none"
+					;	
 			})
 			
 			document.getElementById('contentBoxMeta').style.width = '80%';

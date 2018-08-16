@@ -16,10 +16,7 @@ public class AddQuery extends QueryTemplate{
 		
 		default:
 			break;
-		
 		}
-		
-		
 	}
 
 	@Override
