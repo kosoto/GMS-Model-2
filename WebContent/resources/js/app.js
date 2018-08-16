@@ -168,6 +168,12 @@ var members = (()=>{
 								)
 						}
 				);
+				
+				/*doument.getElementById('logOut')
+				.addEventListener('click',()=>{
+					location.href =
+						x+"/admin.do"
+				});*/
 				break;
 			}
 			
@@ -252,7 +258,7 @@ var admin = (()=>{
 							break;
 						default : break;
 						}
-					 location.href = x
+					 location.href = x.context
 					+"/"+domain+".do?"
 					+"action="+action
 					+"&option="
@@ -271,7 +277,7 @@ var admin = (()=>{
 			document.getElementById('listBtn')
 			.addEventListener('click',function(){
 				location.href =
-					x+"/admin.do?action=search"
+					x.context+"/admin.do?action=search"
 					+"&option=none"		
 			})
 			
@@ -281,7 +287,7 @@ var admin = (()=>{
 			for(var i of document.querySelectorAll('.username')){
                  service.addClass(i,'cursor fontColorBlue');
                  i.addEventListener('click',function(){
-                       location.href = x
+                       location.href = x.context
                             +"/member.do?action=retrieve&option=mem_id&table=member&word="
                            +this.getAttribute('id');//콜백함수에서의 this는 이 함수를 호출한 객체
                  });
@@ -289,9 +295,11 @@ var admin = (()=>{
             for(var i of document.querySelectorAll('.pageNum')){
             	service.addClass(i,'cursor fontColorBlue');
             	i.addEventListener('click',function(){
-        			location.href = x
+        			location.href = x.context
         			+"/admin.do?action=search&page=main&pageNum="
-        			+this.getAttribute('id');
+        			+this.getAttribute('id')
+        			+"&option="+x.option
+        			+"&word="+x.word;
         		});
         	};
         	

@@ -59,7 +59,6 @@ public class FileCommand extends Command {
 					System.out.println("request.getParameter(userid) : "+request.getParameter("userid"));
 					img.setMemberId(request.getParameter("userid"));
 					ImageServiceImpl.getInstance().add(img);
-					// image table 에 id, image, ext 저장
 				}else {
 					System.out.println("8. 파일 업로드 실패");
 				}

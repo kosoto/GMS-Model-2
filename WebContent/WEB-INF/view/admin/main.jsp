@@ -13,7 +13,14 @@
 </div>
 <jsp:include page="../member/search.jsp"/>
 <script>
-	admin.main('${context}');
+	admin.main(
+			{
+				context : '${context}',
+				option : '${option}',
+				word : '${word}'
+			}
+			
+			);
 </script>
 </body>
 </html>

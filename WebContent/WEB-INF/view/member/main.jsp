@@ -8,7 +8,7 @@
 	<div id="header">
 		<h1>멤버 페이지</h1>
 		<jsp:include page="../common/menu-box.jsp"/>
-	</div> <!-- header end -->
+	</div>
 	<div id="content-box">
 	<c:choose>
 		<c:when test="${pagename eq 'add'}">

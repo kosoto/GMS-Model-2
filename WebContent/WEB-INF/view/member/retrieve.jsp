@@ -30,6 +30,7 @@
 		</tr>
 	</table>
 		<a id="moveUpdateForm">정보수정</a> &nbsp; &nbsp;
-		<a id="moveDeleteForm">회원탈퇴</a> 
+		<a id="moveDeleteForm">회원탈퇴</a> &nbsp; &nbsp;
+		<a id="logOut">로그아웃</a>
 </div>
 
