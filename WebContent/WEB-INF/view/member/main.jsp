@@ -7,7 +7,11 @@
 <div id="wrapper">
 	<div id="header">
 		<h1>멤버 페이지</h1>
-		<jsp:include page="../common/menu-box.jsp"/>
+		<div id="menu-box">
+			<ul id="menu">
+				<li><a id="moveHome">HOME</a></li>
+			</ul>
+		</div>
 	</div>
 	<div id="content-box">
 	<c:choose>
@@ -28,13 +32,16 @@
 		</c:otherwise>
 	</c:choose>
 	</div>
-	<div id="footer">주소</div>
 </div>
 <script>
 	members.main(
 			{context : '${context}',
 			pagename : '${pagename}',
-			user : '${user}'});
+			teamId   : '${user.teamId}',
+			roll 	 : '${user.roll}',
+			pass     : '${user.pass}'
+			}
+			);
 </script>
 </body>
 </html>

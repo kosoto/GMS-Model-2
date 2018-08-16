@@ -68,37 +68,30 @@ var members = (()=>{
 				break;
 			case 'modify':
 				var form = document.getElementById('updateForm');
-				/*var teamid = document.getElementsByName('teamid');
+				var teamid = document.getElementsByName('teamid');
 				for(var i in teamid){
-					if(teamid[i].value === x.user.teamId.toLowerCase()){
+					if(teamid[i].value === x.teamId.toLowerCase()){
 						document.getElementById(teamid[i].value).checked = true;
 					}
 				}
 
 				var roll = document.getElementById('roll');
 				for(var i=0;i<roll.options.length;i++){
-					if(roll.options[i].value === x.user.roll){
+					if(roll.options[i].value === x.roll){
 						roll.options[i].setAttribute("selected","selected");
 					}
-				}*/
+				}
 
-				//var newPass = form.newPass.value;
+				var newPass = form.newPass.value;
 				
 				document.getElementById('updateBtn')
 				.addEventListener('click',function(){
-					var node = document.createElement('input');
-					node.setAttribute('type','hidden');
-					node.setAttribute('name','action');
-					node.setAttribute('value','modify');
-					form.appendChild(node);
-					form.action = x.context+"/member.do";
-					form.method = "post"; //get은 입력값을 노출, post는 노출x form태그만 post방식이 있음
-					form.submit();
-					/*if((newPass !== "" && newPass !== x.user.pass) ||
-					   !document.getElementById(x.user.teamId.toLowerCase()).checked ||
-					   roll.value !== x.user.roll){
+					alert('newPass : '+newPass);
+					if((newPass !== "" && newPass !== x.pass) ||
+					   !document.getElementById(x.teamId.toLowerCase()).checked ||
+					   roll.value !== x.roll){
 						if(newPass === ""){
-							form.newPass.value = x.user.pass;
+							form.newPass.value = x.pass;
 						}
 						var node = document.createElement('input');
 						node.setAttribute('type','hidden');
@@ -110,7 +103,7 @@ var members = (()=>{
 						form.submit();
 					}else{
 						alert('수정사항이 없습니다.');
-					}*/
+					}
 					
 				});
 				break;
@@ -169,11 +162,11 @@ var members = (()=>{
 						}
 				);
 				
-				/*doument.getElementById('logOut')
+				document.getElementById('logOut')
 				.addEventListener('click',()=>{
 					location.href =
-						x+"/admin.do"
-				});*/
+						x.context+"/member.do?action=login&flag=logout"
+				});
 				break;
 			}
 			
@@ -182,6 +175,11 @@ var members = (()=>{
 				service.addClass(this, 'width-200 height-150');
 			})
 			
+			document.getElementById('moveHome')
+			.addEventListener('click',()=>{
+				location.href = 
+					x.context+"/common.do"
+			})
 		}//main end
 	}//return end
 })();
@@ -302,7 +300,11 @@ var admin = (()=>{
         			+"&word="+x.word;
         		});
         	};
-        	
+        	document.getElementById('moveHome')
+			.addEventListener('click',()=>{
+				location.href = 
+					x.context+"/common.do"
+			})
         	
         	
 		}//main method 끝

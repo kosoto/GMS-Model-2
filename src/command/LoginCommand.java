@@ -20,23 +20,22 @@ public class LoginCommand extends Command {
 	@Override
 	public void execute() {
 		super.execute();
-		MemberBean member = new MemberBean();
-		member.setMemberId(request.getParameter("userid"));
-		member.setPass(request.getParameter("pass"));
-		MemberBean mem = MemberServiceImpl.getInstance().login(member);
-		if(mem != null) {
-			request.setAttribute("match", "TRUE");
-			request.getSession().setAttribute("user", //세션에 담기
-					mem);
-			request.getSession().setAttribute("profile", 
-					"/upload/"+ImageServiceImpl.getInstance().retrieve(
-					((MemberBean)(request.getSession().getAttribute("user"))).getMemberId()
-					));
-			
+		if(request.getParameter("flag")==null) {
+			MemberBean member = new MemberBean();
+			member.setMemberId(request.getParameter("userid"));
+			member.setPass(request.getParameter("pass"));
+			MemberBean mem = MemberServiceImpl.getInstance().login(member);
+			if(mem != null) {
+				request.setAttribute("match", "TRUE");
+				request.getSession().setAttribute("user", //세션에 담기
+						mem);
+				request.getSession().setAttribute("profile", 
+						"/upload/"+ImageServiceImpl.getInstance().retrieve(
+						((MemberBean)(request.getSession().getAttribute("user"))).getMemberId()
+						));
+			}
 		}else {
-			request.setAttribute("match", "FALSE");
+			request.getSession().removeAttribute("user");;
 		}
-		
-		
 	}
 }

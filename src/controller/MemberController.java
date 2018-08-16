@@ -48,7 +48,7 @@ public class MemberController extends HttpServlet {
 			Carrier.forward(request, response);
 			break;
 		case LOGIN :
-			if(request.getAttribute("match").equals("TRUE")) {
+			if(request.getAttribute("match") != null) {
 				Carrier.forward(request, response);
 			}else {
 				Carrier.redirect(request, response, 
