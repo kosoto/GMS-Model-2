@@ -35,7 +35,7 @@ public class LoginCommand extends Command {
 						));
 			}
 		}else {
-			request.getSession().removeAttribute("user");;
+			request.getSession().removeAttribute("user");
 		}
 	}
 }

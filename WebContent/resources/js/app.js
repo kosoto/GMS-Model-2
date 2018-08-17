@@ -170,11 +170,7 @@ var members = (()=>{
 				break;
 			}
 			
-			document.getElementById('profile')
-			.addEventListener('click',function(){
-				service.addClass(this, 'width-200 height-150');
-			})
-			
+			service.addClass(document.getElementById('profile'), 'width-200 height-150');
 			document.getElementById('moveHome')
 			.addEventListener('click',()=>{
 				location.href = 
@@ -275,9 +271,7 @@ var admin = (()=>{
 			document.getElementById('listBtn')
 			.addEventListener('click',function(){
 				location.href =
-					x.context+"/admin.do?action=search"
-					//+"&option=none"
-					;	
+					x.context+"/admin.do?action=search";	
 			})
 			
 			document.getElementById('contentBoxMeta').style.width = '80%';

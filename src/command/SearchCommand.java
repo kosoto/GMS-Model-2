@@ -22,6 +22,7 @@ public class SearchCommand extends Command{
 		request.setAttribute("option", (nullCheck)?request.getParameter("option"):"none");
 		request.setAttribute("word", (nullCheck)?request.getParameter("word"):"none");
 		boolean noneCheck = request.getAttribute("option").equals("none");
+		
 		PageProxy pxy = new PageProxy();
 		String pageNum = request.getParameter("pageNum"); 
 		pxy.carryOut(
@@ -37,6 +38,8 @@ public class SearchCommand extends Command{
 		);
 		
 		Pagination page = pxy.getPagination();
+		request.setAttribute("page", page);
+		
 		String[] 
 			keys = ("domain/beginRow/endRow"
 					+((noneCheck)?
@@ -58,8 +61,6 @@ public class SearchCommand extends Command{
 		for(int i=0;i<keys.length;i++) {
 			paramMap.put(keys[i], values[i]);
 		}
-		
-		request.setAttribute("page", page);
 		request.setAttribute("list", MemberServiceImpl.getInstance().search(paramMap));
 	}
 }
