@@ -18,49 +18,33 @@ public class SearchCommand extends Command{
 	@Override
 	public void execute() {
 		super.execute();
-		boolean nullCheck = request.getParameter("option")!=null;
-		request.setAttribute("option", (nullCheck)?request.getParameter("option"):"none");
-		request.setAttribute("word", (nullCheck)?request.getParameter("word"):"none");
-		boolean noneCheck = request.getAttribute("option").equals("none");
+		request.setAttribute("option", request.getParameter("option"));
+		request.setAttribute("word", request.getParameter("word"));
 		
+		Map<String,Object>paramMap = new HashMap<>();
+		paramMap.put("column", request.getAttribute("option"));
+		paramMap.put("value", request.getAttribute("word"));
+		paramMap.put("pageNum", request.getParameter("pageNum"));
+		paramMap.put("count", 
+				(request.getParameter("option")==null)?
+				MemberServiceImpl.getInstance().count():
+				MemberServiceImpl.getInstance().count(paramMap));
 		PageProxy pxy = new PageProxy();
-		String pageNum = request.getParameter("pageNum"); 
-		pxy.carryOut(
-				((pageNum==null)?
-						"1/"
-						:pageNum+"/")
-				+((noneCheck)?
-						MemberServiceImpl.getInstance().count()
-						:MemberServiceImpl.getInstance().count(
-									request.getAttribute("option")+"/"
-									+request.getAttribute("word"))
-				 )
-		);
+		pxy.carryOut(paramMap);
 		
 		Pagination page = pxy.getPagination();
 		request.setAttribute("page", page);
 		
 		String[] 
-			keys = ("domain/beginRow/endRow"
-					+((noneCheck)?
-					  ""
-					  :"/column/value")
-					)
-				.split("/"), 
-			 values = (Domain.MEMBER.toString()+"/"
-						+String.valueOf(page.getBeginRow())+"/"
-						+String.valueOf(page.getEndRow())
-						+((noneCheck)?
-						""
-						:"/"+((String) request.getAttribute("option"))
-						+"/"+((String) request.getAttribute("word")))
-					)
-			 	.split("/");
-		
-		Map<String,Object>paramMap = new HashMap<>();
+			 keys = {"domain","beginRow","endRow"},
+			 values = {Domain.MEMBER.toString(),
+					   String.valueOf(page.getBeginRow()),
+					   String.valueOf(page.getEndRow())
+					};
 		for(int i=0;i<keys.length;i++) {
 			paramMap.put(keys[i], values[i]);
 		}
+		
 		request.setAttribute("list", MemberServiceImpl.getInstance().search(paramMap));
 	}
 }

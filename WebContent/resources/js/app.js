@@ -186,7 +186,7 @@ var common = (()=>{
 			document.getElementById('moveAdmin')
 			.addEventListener('click',function(){  
 				 location.href =
-                     x+"/admin.do?action=search";
+                     x+"/admin.do?action=search&pageNum=1";
 				/*router.move(
 						{context : x,
 						domain : 'admin',
@@ -259,7 +259,7 @@ var admin = (()=>{
 					+document.getElementById('option').value
 					+"&word="
 					+document.getElementById('word').value
-					+"&table=member"
+					+"&table=member&pageNum=1"
 					}else{
 						alert('검색어를 입력하세요.');
 					}
@@ -271,7 +271,7 @@ var admin = (()=>{
 			document.getElementById('listBtn')
 			.addEventListener('click',function(){
 				location.href =
-					x.context+"/admin.do?action=search";	
+					x.context+"/admin.do?action=search&pageNum=1";	
 			})
 			
 			document.getElementById('contentBoxMeta').style.width = '80%';
@@ -291,8 +291,11 @@ var admin = (()=>{
         			location.href = x.context
         			+"/admin.do?action=search&page=main&pageNum="
         			+this.getAttribute('id')
-        			+"&option="+x.option
-        			+"&word="+x.word;
+        			+((x.option === "")?
+        				""
+        				:"&option="+x.option
+	        			 +"&word="+x.word);
+            	
         		});
         	};
         	document.getElementById('moveHome')

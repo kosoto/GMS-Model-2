@@ -77,12 +77,9 @@ public class MemberDAOImpl implements MemberDAO{
 		return q.getNumber();
 	}
 	@Override
-	public int count(String word) {
-		Map<String,Object> map = new HashMap<>();
-		map.put("column", word.split("/")[0].toUpperCase());
-		map.put("value", word.split("/")[1]);
+	public int count(Map<String, Object> paramMap) {
 		q = new CountQuery();
-		q.play(map);
+		q.play(paramMap);
 		return q.getNumber();
 	}
 	@Override

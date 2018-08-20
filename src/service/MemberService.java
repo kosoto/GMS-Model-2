@@ -9,7 +9,7 @@ public interface MemberService {
 	public List<MemberBean> search(Map<?,?>param);
 	public MemberBean retrieve(String word);
 	public int count();
-	public int count(String word);
+	public int count(Map<String, Object> paramMap);
 	public void modify(Map<?,?>param);
 	public void remove(MemberBean member);
 	public MemberBean login(MemberBean member);

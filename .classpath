@@ -14,9 +14,9 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="C:/Users/1027/eclipse/jee-oxygen/eclipse/Workspace2/lombok.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/1027/eclipse/jee-oxygen/eclipse/Workspace2/cos.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/1027/eclipse/jee-oxygen/eclipse/Workspace2/jstl.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/1027/eclipse/jee-oxygen/eclipse/Workspace2/standard.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/1027/eclipse/jee-oxygen/eclipse/lombok.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/1027/eclipse/jee-oxygen/eclipse/Workspace2/MVC_by_sojin/WebContent/WEB-INF/lib/cos.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/1027/eclipse/jee-oxygen/eclipse/Workspace2/MVC_by_sojin/WebContent/WEB-INF/lib/jstl.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/1027/eclipse/jee-oxygen/eclipse/Workspace2/MVC_by_sojin/WebContent/WEB-INF/lib/standard.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -28,8 +28,8 @@ public class MemberServiceImpl implements MemberService{
 		return MemberDAOImpl.getInstance().count();
 	}
 	@Override
-	public int count(String word) {
-		return MemberDAOImpl.getInstance().count(word);
+	public int count(Map<String, Object> paramMap) {
+		return MemberDAOImpl.getInstance().count(paramMap);
 	}
 	@Override
 	public void modify(Map<?, ?> param) {

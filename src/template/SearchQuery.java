@@ -10,7 +10,7 @@ public class SearchQuery extends QueryTemplate{
 	@Override
 	void initialize() {
 		map.put("sql", 
-				(!map.containsKey("column"))?
+				(map.get("column")==null)?
 					String.format(
 							MemberQuery.LIST.toString(), 
 							((String)map.get("domain")))
@@ -27,7 +27,7 @@ public class SearchQuery extends QueryTemplate{
 	void startPlay() {
 		try {
 			int j = 0;
-			if(map.containsKey("column")) {
+			if(map.get("column")!=null) {
 				j++;
 				pstmt.setString(j, 
 					"%"+((String)map.get("value"))+"%");

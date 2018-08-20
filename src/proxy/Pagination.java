@@ -1,4 +1,6 @@
 package proxy;
+import java.util.Map;
+
 import lombok.Data;
 @Data
 public class Pagination implements Proxy{
@@ -7,10 +9,12 @@ public class Pagination implements Proxy{
 	
 	@Override
 	public void carryOut(Object o) {
-		pageNum = Integer.parseInt(((String) o).split("/")[0]); 
+		@SuppressWarnings("unchecked")
+		Map<String,Object> map = ((Map<String, Object>)o);
+		pageNum = Integer.parseInt((String) map.get("pageNum"));
 		pageSize = 5; 
 		blockSize = 5;
-		count = Integer.parseInt(((String) o).split("/")[1]);
+		count =  (int) map.get("count");
 		beginPage = Math.floorDiv(pageNum-1, pageSize)*pageSize+1;
 		endPage = (count>(beginPage+(blockSize-1))*pageSize)?
 				beginPage+(blockSize-1):(int)(Math.ceil(count/(double)pageSize));

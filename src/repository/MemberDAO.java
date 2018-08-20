@@ -10,7 +10,7 @@ public interface MemberDAO {
 	public List<MemberBean> selectSome(Map<?,?>param);
 	public MemberBean selectOne(String word);
 	public int count();
-	public int count(String word);
+	public int count(Map<String, Object> paramMap);
 	public void update(Map<?,?>param);
 	public void delete(MemberBean member);
 	public MemberBean login(MemberBean member);
